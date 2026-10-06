@@ -1,0 +1,55 @@
+generated: '2026-10-05'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/amberai-openapi.json
+format: custom
+envelope:
+  media_type: application/json
+  schema: Error
+coverage:
+  operations: 179
+  statuses_declared: 6
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid parameter, unsupported include, or cursor used with different filters.
+  operations: 179
+  media_types:
+  - application/json
+  schema: Error
+- status: 401
+  title: Unauthorized
+  description: Missing, invalid, expired, or out-of-scope API key.
+  operations: 179
+  media_types:
+  - application/json
+  schema: Error
+- status: 404
+  title: Not Found
+  description: The record was not found or is not available to your brand.
+  operations: 179
+  media_types:
+  - application/json
+  schema: Error
+- status: 429
+  title: Too Many Requests
+  description: Rate limit exceeded. Retry after the indicated delay.
+  operations: 179
+  media_types:
+  - application/json
+  schema: Error
+- status: 500
+  title: Internal Server Error
+  description: Unexpected server error.
+  operations: 179
+  media_types:
+  - application/json
+  schema: Error
+- status: 502
+  title: Bad Gateway
+  description: File storage is temporarily unavailable.
+  operations: 2
+  media_types:
+  - application/json
+  schema: Error

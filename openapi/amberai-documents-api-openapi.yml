@@ -1,0 +1,745 @@
+openapi: 3.2.0
+info:
+  title: Amber Public Documents API
+  version: 1.3.0
+  description: Read your brand's catalog, sourcing, orders, shipments, finance, and documents. All business endpoints are read-only and require an API key. Products are Parent Products; Product Options and SKUs are separate resources. Use filters to find records, follow their IDs to related data, and paginate to retrieve every result. See the integration tutorials for complete examples and data conventions for amounts, IDs, and timestamps.
+servers:
+- url: https://app.amber.ai/api/public/v1
+tags:
+- name: Documents
+paths:
+  /brands/{brand}/documents:
+    get:
+      tags:
+      - Documents
+      summary: List Documents
+      operationId: listDocuments
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: subjectKind
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ORDER
+          - SHIPMENT
+          - PAYMENT
+          - PRODUCT
+          - PRODUCT_OPTION
+          - PRODUCT_VERSION
+          - SKU
+          - SAMPLE
+          - SAMPLE_ROUND
+          - QUOTE
+          - QUOTE_NOTE
+          - MATERIAL
+          - BOM_COMPONENT
+          - MEASUREMENT_TABLE
+          - PARTNER
+          - BRAND
+      - name: subjectKey
+        in: query
+        required: false
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+      - name: documentTypeId
+        in: query
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      - name: includeSuperseded
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      - name: fileName
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: mimeType
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: dataValue
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: issuerName
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentsList'
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/documents/{id}:
+    get:
+      tags:
+      - Documents
+      summary: Get a document
+      operationId: getDocuments
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Document ID returned by the list endpoint. Keep the entire value, including any prefix.
+        schema:
+          type: string
+      - name: subjectKind
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ORDER
+          - SHIPMENT
+          - PAYMENT
+          - PRODUCT
+          - PRODUCT_OPTION
+          - PRODUCT_VERSION
+          - SKU
+          - SAMPLE
+          - SAMPLE_ROUND
+          - QUOTE
+          - QUOTE_NOTE
+          - MATERIAL
+          - BOM_COMPONENT
+          - MEASUREMENT_TABLE
+          - PARTNER
+          - BRAND
+      - name: subjectKey
+        in: query
+        required: false
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+      - name: documentTypeId
+        in: query
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      - name: includeSuperseded
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Documents'
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/documents/{id}/content:
+    get:
+      tags:
+      - Documents
+      summary: Get a temporary download URL
+      operationId: getDocumentContent
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Document ID returned by the list endpoint. Keep the entire value, including any prefix.
+        schema:
+          type: string
+      - name: subjectKind
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - ORDER
+          - SHIPMENT
+          - PAYMENT
+          - PRODUCT
+          - PRODUCT_OPTION
+          - PRODUCT_VERSION
+          - SKU
+          - SAMPLE
+          - SAMPLE_ROUND
+          - QUOTE
+          - QUOTE_NOTE
+          - MATERIAL
+          - BOM_COMPONENT
+          - MEASUREMENT_TABLE
+          - PARTNER
+          - BRAND
+      - name: subjectKey
+        in: query
+        required: false
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+      - name: documentTypeId
+        in: query
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      - name: includeSuperseded
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentContent'
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '502':
+          description: File storage is temporarily unavailable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    DocumentsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              subjects:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    subjectKind:
+                      type: string
+                    subjectKey:
+                      type: string
+                    establishedAs:
+                      type: string
+                    subjectLabel:
+                      type: string
+                  required:
+                  - subjectKind
+                  - subjectKey
+                  - establishedAs
+                  - subjectLabel
+                  additionalProperties: false
+              id:
+                type: string
+              ownerType:
+                type: string
+              ownerId:
+                type: string
+              visibility:
+                type: string
+              documentTypeId:
+                type:
+                - string
+                - 'null'
+              dataValue:
+                type:
+                - string
+                - 'null'
+              fileName:
+                type:
+                - string
+                - 'null'
+              mimeType:
+                type:
+                - string
+                - 'null'
+              fileSizeBytes:
+                type:
+                - number
+                - 'null'
+              channel:
+                type: string
+              source:
+                type:
+                - string
+                - 'null'
+              supersededByDocumentId:
+                type:
+                - string
+                - 'null'
+              supersededAt:
+                type:
+                - string
+                - 'null'
+              supersededReason:
+                type:
+                - string
+                - 'null'
+              senderRole:
+                type:
+                - string
+                - 'null'
+              issuerName:
+                type:
+                - string
+                - 'null'
+              extent:
+                anyOf:
+                - $ref: '#/components/schemas/DocumentsList/$defs/__schema0'
+                - type: 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+              deletedAt:
+                type:
+                - string
+                - 'null'
+              subjectKind:
+                type:
+                - string
+                - 'null'
+              subjectKey:
+                type:
+                - string
+                - 'null'
+            required:
+            - subjects
+            - id
+            - ownerType
+            - ownerId
+            - visibility
+            - documentTypeId
+            - dataValue
+            - fileName
+            - mimeType
+            - fileSizeBytes
+            - channel
+            - source
+            - supersededByDocumentId
+            - supersededAt
+            - supersededReason
+            - senderRole
+            - issuerName
+            - extent
+            - createdAt
+            - updatedAt
+            - deletedAt
+            - subjectKind
+            - subjectKey
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/DocumentsList/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/DocumentsList/$defs/__schema0'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    DocumentContent:
+      type: object
+      properties:
+        url:
+          type: string
+        expiresAt:
+          type: string
+        extent:
+          anyOf:
+          - $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
+          - type: 'null'
+      required:
+      - url
+      - expiresAt
+      - extent
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
+    Documents:
+      type: object
+      properties:
+        subjects:
+          type: array
+          items:
+            type: object
+            properties:
+              subjectKind:
+                type: string
+              subjectKey:
+                type: string
+              establishedAs:
+                type: string
+              subjectLabel:
+                type: string
+            required:
+            - subjectKind
+            - subjectKey
+            - establishedAs
+            - subjectLabel
+            additionalProperties: false
+        id:
+          type: string
+        ownerType:
+          type: string
+        ownerId:
+          type: string
+        visibility:
+          type: string
+        documentTypeId:
+          type:
+          - string
+          - 'null'
+        dataValue:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        mimeType:
+          type:
+          - string
+          - 'null'
+        fileSizeBytes:
+          type:
+          - number
+          - 'null'
+        channel:
+          type: string
+        source:
+          type:
+          - string
+          - 'null'
+        supersededByDocumentId:
+          type:
+          - string
+          - 'null'
+        supersededAt:
+          type:
+          - string
+          - 'null'
+        supersededReason:
+          type:
+          - string
+          - 'null'
+        senderRole:
+          type:
+          - string
+          - 'null'
+        issuerName:
+          type:
+          - string
+          - 'null'
+        extent:
+          anyOf:
+          - $ref: '#/components/schemas/Documents/$defs/__schema0'
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        deletedAt:
+          type:
+          - string
+          - 'null'
+        subjectKind:
+          type:
+          - string
+          - 'null'
+        subjectKey:
+          type:
+          - string
+          - 'null'
+      required:
+      - subjects
+      - id
+      - ownerType
+      - ownerId
+      - visibility
+      - documentTypeId
+      - dataValue
+      - fileName
+      - mimeType
+      - fileSizeBytes
+      - channel
+      - source
+      - supersededByDocumentId
+      - supersededAt
+      - supersededReason
+      - senderRole
+      - issuerName
+      - extent
+      - createdAt
+      - updatedAt
+      - deletedAt
+      - subjectKind
+      - subjectKey
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Documents/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Documents/$defs/__schema0'
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: A brand-scoped or global amb_sk_... API key.

@@ -1,0 +1,2627 @@
+openapi: 3.2.0
+info:
+  title: Amber Public Parent Products API
+  version: 1.3.0
+  description: Read your brand's catalog, sourcing, orders, shipments, finance, and documents. All business endpoints are read-only and require an API key. Products are Parent Products; Product Options and SKUs are separate resources. Use filters to find records, follow their IDs to related data, and paginate to retrieve every result. See the integration tutorials for complete examples and data conventions for amounts, IDs, and timestamps.
+servers:
+- url: https://app.amber.ai/api/public/v1
+tags:
+- name: Parent Products
+paths:
+  /brands/{brand}/products:
+    get:
+      tags:
+      - Parent Products
+      summary: List Parent Products
+      operationId: listProducts
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: code
+        in: query
+        required: false
+        description: 'Exact, case-sensitive Parent Product code. Example: TEE-001.'
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: 'Exact, case-sensitive Parent Product code. Example: TEE-001.'
+          examples:
+          - TEE-001
+      - name: status
+        in: query
+        required: false
+        description: Exact product workflow status.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact product workflow status.
+      - name: categoryId
+        in: query
+        required: false
+        description: Category ID from /categories.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Category ID from /categories.
+      - name: q
+        in: query
+        required: false
+        description: Case-insensitive literal substring of product name or code. Percent and underscore are ordinary characters.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Case-insensitive literal substring of product name or code. Percent and underscore are ordinary characters.
+          examples:
+          - cotton
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+              example:
+                items:
+                - id: 00000000-0000-4000-8000-000000000001
+                  code: TEE-001
+                  name: Cotton tee
+                  status: active
+                  category: Apparel
+                  createdAt: '2026-01-15T10:00:00.000Z'
+                  updatedAt: '2026-09-30T08:00:00.000Z'
+                nextCursor: null
+                totalItems: 1
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/products/{id}:
+    get:
+      tags:
+      - Parent Products
+      summary: Get Parent Products
+      operationId: getProducts
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Stable resource identifier.
+        schema:
+          type: string
+      - name: include
+        in: query
+        required: false
+        description: 'Related collections to include, separated by commas: documents, images, bomSections, launchWindowDefinitions, tagDefinitions, collectionDefinitions, dimensionValueDefinitions, dimensionDefinitions, optionValueDefinitions, optionDefinitions, categories, colors, materialVariants, materials, productOptions, skus, versions, boms, bomComponents, measurementTables, optionValues, dimensionValues, prices, optionCollections, bomSkus, measurementTableSkus, skuDimensionValues, collections, tags, launchWindows, relations. Use all to request every supported collection. Each collection returns up to includeLimit records (default 25, maximum 100). To read more, add its nextCursor to the returned url. Each distinct collection uses one expansion credit. Your key has up to 62 credits, replenished at 1,000 per hour by default. On 429, wait for Retry-After before retrying. Continuation requests use no expansion credits. See [product expansions](https://docs.amber.ai/product-graphs) for examples and rate limits.'
+        schema:
+          type: string
+          example: boms,bomComponents,measurementTables,productOptions,materials
+      - name: includeLimit
+        in: query
+        required: false
+        description: Rows per included relationship, default 25. Requires include. Each relationship has its own continuation cursor.
+        schema:
+          description: Rows per included relationship, default 25. Requires include. Each relationship has its own continuation cursor.
+          default: 25
+          type: integer
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductDetail'
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ProductList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              code:
+                type: string
+              name:
+                type: string
+              status:
+                type:
+                - string
+                - 'null'
+              category:
+                type:
+                - string
+                - 'null'
+              categoryId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              currentProductVersionId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - code
+            - name
+            - status
+            - category
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+    ProductDetail:
+      type: object
+      properties:
+        launchWindow:
+          type:
+          - string
+          - 'null'
+        estimatedVolume:
+          type:
+          - number
+          - 'null'
+        globalMoq:
+          type:
+          - number
+          - 'null'
+        htsCodeOverride:
+          type:
+          - string
+          - 'null'
+        customFields:
+          anyOf:
+          - $ref: '#/components/schemas/ProductDetail/$defs/__schema0'
+          - type: 'null'
+        productOwnerUserId:
+          type:
+          - string
+          - 'null'
+        currentProductVersionId:
+          type:
+          - string
+          - 'null'
+        optionGroupCurveId:
+          type:
+          - string
+          - 'null'
+        lastActivityAt:
+          type:
+          - string
+          - 'null'
+        included:
+          type: object
+          properties:
+            documents:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      subjects:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            subjectKind:
+                              type: string
+                            subjectKey:
+                              type: string
+                            establishedAs:
+                              type: string
+                            subjectLabel:
+                              type: string
+                          required:
+                          - subjectKind
+                          - subjectKey
+                          - establishedAs
+                          - subjectLabel
+                          additionalProperties: false
+                      id:
+                        type: string
+                      ownerType:
+                        type: string
+                      ownerId:
+                        type: string
+                      visibility:
+                        type: string
+                      documentTypeId:
+                        type:
+                        - string
+                        - 'null'
+                      dataValue:
+                        type:
+                        - string
+                        - 'null'
+                      fileName:
+                        type:
+                        - string
+                        - 'null'
+                      mimeType:
+                        type:
+                        - string
+                        - 'null'
+                      fileSizeBytes:
+                        type:
+                        - number
+                        - 'null'
+                      channel:
+                        type: string
+                      source:
+                        type:
+                        - string
+                        - 'null'
+                      supersededByDocumentId:
+                        type:
+                        - string
+                        - 'null'
+                      supersededAt:
+                        type:
+                        - string
+                        - 'null'
+                      supersededReason:
+                        type:
+                        - string
+                        - 'null'
+                      senderRole:
+                        type:
+                        - string
+                        - 'null'
+                      issuerName:
+                        type:
+                        - string
+                        - 'null'
+                      extent:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema1'
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                      deletedAt:
+                        type:
+                        - string
+                        - 'null'
+                      subjectKind:
+                        type:
+                        - string
+                        - 'null'
+                      subjectKey:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - subjects
+                    - id
+                    - ownerType
+                    - ownerId
+                    - visibility
+                    - documentTypeId
+                    - dataValue
+                    - fileName
+                    - mimeType
+                    - fileSizeBytes
+                    - channel
+                    - source
+                    - supersededByDocumentId
+                    - supersededAt
+                    - supersededReason
+                    - senderRole
+                    - issuerName
+                    - extent
+                    - createdAt
+                    - updatedAt
+                    - deletedAt
+                    - subjectKind
+                    - subjectKey
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            images:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      filename:
+                        type: string
+                      fileSize:
+                        type: number
+                      mimeType:
+                        type: string
+                      category:
+                        type: string
+                      entityId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      entityType:
+                        type:
+                        - string
+                        - 'null'
+                      description:
+                        type:
+                        - string
+                        - 'null'
+                      title:
+                        type:
+                        - string
+                        - 'null'
+                      idx:
+                        type: number
+                      isThumbnail:
+                        type: boolean
+                      isInternal:
+                        type: boolean
+                      uploadedAt:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - filename
+                    - fileSize
+                    - mimeType
+                    - category
+                    - entityId
+                    - entityType
+                    - description
+                    - title
+                    - idx
+                    - isThumbnail
+                    - isInternal
+                    - uploadedAt
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            bomSections:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      code:
+                        type: string
+                      name:
+                        type: string
+                      sequence:
+                        type: number
+                      relevantFieldKeys:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema2'
+                        - type: 'null'
+                      deletedAt:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - code
+                    - name
+                    - sequence
+                    - relevantFieldKeys
+                    - deletedAt
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            launchWindowDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      collectionId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      name:
+                        type: string
+                      code:
+                        type: string
+                      uiColor:
+                        type: string
+                      launchStartDate:
+                        type:
+                        - string
+                        - 'null'
+                      launchEndDate:
+                        type:
+                        - string
+                        - 'null'
+                      deletedAt:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - collectionId
+                    - name
+                    - code
+                    - uiColor
+                    - launchStartDate
+                    - launchEndDate
+                    - deletedAt
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            tagDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      code:
+                        type: string
+                      uiColor:
+                        type: string
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - name
+                    - code
+                    - uiColor
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            collectionDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      code:
+                        type: string
+                      uiColor:
+                        type: string
+                      customFields:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema3'
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - name
+                    - code
+                    - uiColor
+                    - customFields
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            dimensionValueDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      dimensionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      value:
+                        type: string
+                      customerFacingLabel:
+                        type:
+                        - string
+                        - 'null'
+                      sequence:
+                        type: number
+                      skuCode:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - dimensionId
+                    - value
+                    - customerFacingLabel
+                    - sequence
+                    - skuCode
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            dimensionDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      code:
+                        type: string
+                      skuSequence:
+                        type: number
+                      listSequence:
+                        type: number
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - name
+                    - code
+                    - skuSequence
+                    - listSequence
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            optionValueDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      optionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      code:
+                        type:
+                        - string
+                        - 'null'
+                      status:
+                        type: string
+                      sequence:
+                        type: number
+                      hexCode:
+                        type:
+                        - string
+                        - 'null'
+                      swatchVersion:
+                        type: number
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - optionId
+                    - name
+                    - code
+                    - status
+                    - sequence
+                    - hexCode
+                    - swatchVersion
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            optionDefinitions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      key:
+                        type: string
+                      sequence:
+                        type: number
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - name
+                    - key
+                    - sequence
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            categories:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      parentId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      name:
+                        type: string
+                      code:
+                        type:
+                        - string
+                        - 'null'
+                      defaultHtsCode:
+                        type:
+                        - string
+                        - 'null'
+                      defaultSizeSystemId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      defaultTargetSize:
+                        type:
+                        - string
+                        - 'null'
+                      nextValue:
+                        type:
+                        - number
+                        - 'null'
+                      createdAt:
+                        type:
+                        - string
+                        - 'null'
+                      updatedAt:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - parentId
+                    - name
+                    - code
+                    - defaultHtsCode
+                    - defaultSizeSystemId
+                    - defaultTargetSize
+                    - nextValue
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            colors:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      status:
+                        type: string
+                      code:
+                        type: string
+                      name:
+                        type: string
+                      hexCode:
+                        type:
+                        - string
+                        - 'null'
+                      swatchVersion:
+                        type: number
+                      customFields:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema4'
+                        - type: 'null'
+                      createdAt:
+                        type:
+                        - string
+                        - 'null'
+                      updatedAt:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - status
+                    - code
+                    - name
+                    - hexCode
+                    - swatchVersion
+                    - customFields
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            materialVariants:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      componentId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      supplierMaterialVariantName:
+                        type:
+                        - string
+                        - 'null'
+                      supplierMaterialVariantCode:
+                        type:
+                        - string
+                        - 'null'
+                      negotiatedPrice:
+                        type:
+                        - string
+                        - 'null'
+                      negotiatedPriceCurrency:
+                        type:
+                        - string
+                        - 'null'
+                      imageVersion:
+                        type: number
+                      hexCode:
+                        type:
+                        - string
+                        - 'null'
+                      colorId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      customFields:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema5'
+                        - type: 'null'
+                      status:
+                        type: string
+                      deletedAt:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - componentId
+                    - supplierMaterialVariantName
+                    - supplierMaterialVariantCode
+                    - negotiatedPrice
+                    - negotiatedPriceCurrency
+                    - imageVersion
+                    - hexCode
+                    - colorId
+                    - customFields
+                    - status
+                    - deletedAt
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            materials:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      bomSectionId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      name:
+                        type: string
+                      code:
+                        type:
+                        - string
+                        - 'null'
+                      composition:
+                        type:
+                        - string
+                        - 'null'
+                      description:
+                        type:
+                        - string
+                        - 'null'
+                      gsm:
+                        type:
+                        - number
+                        - 'null'
+                      supplier:
+                        type:
+                        - string
+                        - 'null'
+                      supplierProductCode:
+                        type:
+                        - string
+                        - 'null'
+                      status:
+                        type: string
+                      negotiatedPrice:
+                        type:
+                        - string
+                        - 'null'
+                      negotiatedPriceCurrency:
+                        type:
+                        - string
+                        - 'null'
+                      properties:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema6'
+                        - type: 'null'
+                      customFields:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema7'
+                        - type: 'null'
+                      imageVersion:
+                        type: number
+                      deletedAt:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - bomSectionId
+                    - name
+                    - code
+                    - composition
+                    - description
+                    - gsm
+                    - supplier
+                    - supplierProductCode
+                    - status
+                    - negotiatedPrice
+                    - negotiatedPriceCurrency
+                    - properties
+                    - customFields
+                    - imageVersion
+                    - deletedAt
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            productOptions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        description: Parent Product ID from /products.
+                      name:
+                        type: string
+                      vendorFacingProductName:
+                        type:
+                        - string
+                        - 'null'
+                      sequence:
+                        type: number
+                      status:
+                        type: string
+                      supplierId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      collectionId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      launchWindow:
+                        type:
+                        - string
+                        - 'null'
+                      channel:
+                        type:
+                        - string
+                        - 'null'
+                      measurementTableId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      construction:
+                        type:
+                        - string
+                        - 'null'
+                      hsCode:
+                        type:
+                        - string
+                        - 'null'
+                      hsConfirmed:
+                        type: boolean
+                      hsWhy:
+                        type:
+                        - string
+                        - 'null'
+                      customFields:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema8'
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                      deletedAt:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - productId
+                    - name
+                    - vendorFacingProductName
+                    - sequence
+                    - status
+                    - supplierId
+                    - collectionId
+                    - launchWindow
+                    - channel
+                    - measurementTableId
+                    - construction
+                    - hsCode
+                    - hsConfirmed
+                    - hsWhy
+                    - customFields
+                    - createdAt
+                    - updatedAt
+                    - deletedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            skus:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        description: Parent Product ID from /products.
+                      code:
+                        type: string
+                      status:
+                        type: string
+                      upc:
+                        type:
+                        - string
+                        - 'null'
+                      retailPrice:
+                        type:
+                        - string
+                        - 'null'
+                      wholesalePrice:
+                        type:
+                        - string
+                        - 'null'
+                      colorId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      htsCodeOverride:
+                        type:
+                        - string
+                        - 'null'
+                      productOptionId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                        description: Product Option ID from /product-options.
+                      targetFobOverride:
+                        type:
+                        - string
+                        - 'null'
+                      launchWindowOverride:
+                        type:
+                        - string
+                        - 'null'
+                      collectionIdsOverride:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema9'
+                        - type: 'null'
+                      weightValue:
+                        type:
+                        - string
+                        - 'null'
+                      weightUomId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - productId
+                    - code
+                    - status
+                    - upc
+                    - retailPrice
+                    - wholesalePrice
+                    - colorId
+                    - htsCodeOverride
+                    - productOptionId
+                    - targetFobOverride
+                    - launchWindowOverride
+                    - collectionIdsOverride
+                    - weightValue
+                    - weightUomId
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            versions:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      versionNumber:
+                        type: number
+                      versionName:
+                        type:
+                        - string
+                        - 'null'
+                      status:
+                        type: string
+                      isActive:
+                        type: boolean
+                      weightValue:
+                        type:
+                        - string
+                        - 'null'
+                      weightUomId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      targetFob:
+                        type:
+                        - string
+                        - 'null'
+                      targetFobCurrency:
+                        type:
+                        - string
+                        - 'null'
+                      priceCurrency:
+                        type:
+                        - string
+                        - 'null'
+                      moq:
+                        type:
+                        - number
+                        - 'null'
+                      moqByColor:
+                        type:
+                        - number
+                        - 'null'
+                      moqLastConfirmedAt:
+                        type:
+                        - string
+                        - 'null'
+                      technicalSpecs:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema10'
+                        - type: 'null'
+                      packagingSpecs:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema11'
+                        - type: 'null'
+                      labelingSpecs:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema12'
+                        - type: 'null'
+                      sizeSpecs:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema13'
+                        - type: 'null'
+                      baseVersionId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      protoId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      partnerId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      notes:
+                        type:
+                        - string
+                        - 'null'
+                      changesSummary:
+                        type:
+                        - string
+                        - 'null'
+                      approvedAt:
+                        type:
+                        - string
+                        - 'null'
+                      approvedBy:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - productId
+                    - versionNumber
+                    - versionName
+                    - status
+                    - isActive
+                    - weightValue
+                    - weightUomId
+                    - targetFob
+                    - targetFobCurrency
+                    - priceCurrency
+                    - moq
+                    - moqByColor
+                    - moqLastConfirmedAt
+                    - technicalSpecs
+                    - packagingSpecs
+                    - labelingSpecs
+                    - sizeSpecs
+                    - baseVersionId
+                    - protoId
+                    - partnerId
+                    - notes
+                    - changesSummary
+                    - approvedAt
+                    - approvedBy
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            boms:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productVersionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      isDefault:
+                        type: boolean
+                      constructionAnnotations:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema14'
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - productVersionId
+                    - name
+                    - isDefault
+                    - constructionAnnotations
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            bomComponents:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      bomId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      componentId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      componentVariantId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      bomSectionId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      name:
+                        type:
+                        - string
+                        - 'null'
+                      composition:
+                        type:
+                        - string
+                        - 'null'
+                      quantity:
+                        type:
+                        - string
+                        - 'null'
+                      unitPrice:
+                        type:
+                        - string
+                        - 'null'
+                      gsm:
+                        type:
+                        - number
+                        - 'null'
+                      supplier:
+                        type:
+                        - string
+                        - 'null'
+                      notes:
+                        type:
+                        - string
+                        - 'null'
+                      properties:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema15'
+                        - type: 'null'
+                      showOnPo:
+                        type: boolean
+                      createdAt:
+                        type:
+                        - string
+                        - 'null'
+                      updatedAt:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - bomId
+                    - componentId
+                    - componentVariantId
+                    - bomSectionId
+                    - name
+                    - composition
+                    - quantity
+                    - unitPrice
+                    - gsm
+                    - supplier
+                    - notes
+                    - properties
+                    - showOnPo
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            measurementTables:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productVersionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      name:
+                        type: string
+                      sizeSpecs:
+                        anyOf:
+                        - $ref: '#/components/schemas/ProductDetail/$defs/__schema16'
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - productVersionId
+                    - name
+                    - sizeSpecs
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            optionValues:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productOptionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      optionValueId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    required:
+                    - productOptionId
+                    - optionValueId
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            dimensionValues:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productOptionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      dimensionValueId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    required:
+                    - productOptionId
+                    - dimensionValueId
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            prices:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productOptionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      kind:
+                        type: string
+                      currency:
+                        type: string
+                      amount:
+                        type: string
+                    required:
+                    - productOptionId
+                    - kind
+                    - currency
+                    - amount
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            optionCollections:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productOptionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      collectionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    required:
+                    - productOptionId
+                    - collectionId
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            bomSkus:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      bomId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      skuId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    required:
+                    - bomId
+                    - skuId
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            measurementTableSkus:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      measurementTableId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      skuId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    required:
+                    - measurementTableId
+                    - skuId
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            skuDimensionValues:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      skuId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      dimensionValueId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    required:
+                    - skuId
+                    - dimensionValueId
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            collections:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      collectionId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      quantity:
+                        type:
+                        - number
+                        - 'null'
+                      unitPrice:
+                        type:
+                        - string
+                        - 'null'
+                      notes:
+                        type:
+                        - string
+                        - 'null'
+                      createdAt:
+                        type: string
+                      updatedAt:
+                        type: string
+                    required:
+                    - id
+                    - productId
+                    - collectionId
+                    - quantity
+                    - unitPrice
+                    - notes
+                    - createdAt
+                    - updatedAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            tags:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      tagId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      createdAt:
+                        type: string
+                    required:
+                    - productId
+                    - tagId
+                    - createdAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            launchWindows:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      launchWindowId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      createdAt:
+                        type: string
+                    required:
+                    - productId
+                    - launchWindowId
+                    - createdAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+            relations:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      productId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      relatedProductId:
+                        type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      relationType:
+                        type: string
+                      createdByUserId:
+                        anyOf:
+                        - type: string
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                        - type: 'null'
+                      createdAt:
+                        type: string
+                    required:
+                    - id
+                    - productId
+                    - relatedProductId
+                    - relationType
+                    - createdByUserId
+                    - createdAt
+                    additionalProperties: false
+                nextCursor:
+                  type:
+                  - string
+                  - 'null'
+                totalItems:
+                  type: integer
+                  description: Total number of matching records across all pages.
+                url:
+                  type: string
+              required:
+              - items
+              - nextCursor
+              - totalItems
+              - url
+              additionalProperties: false
+          additionalProperties: false
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        status:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        category:
+          type:
+          - string
+          - 'null'
+        categoryId:
+          type:
+          - string
+          - 'null'
+        variants:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              sku:
+                type: string
+              color:
+                type:
+                - string
+                - 'null'
+              size:
+                type:
+                - string
+                - 'null'
+            required:
+            - id
+            - sku
+            - color
+            - size
+            additionalProperties: false
+        suppliers:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              shortName:
+                type:
+                - string
+                - 'null'
+            required:
+            - id
+            - name
+            - shortName
+            additionalProperties: false
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - code
+      - name
+      - status
+      - description
+      - category
+      - categoryId
+      - variants
+      - suppliers
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema1'
+        __schema2:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema2'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema2'
+        __schema3:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema3'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema3'
+        __schema4:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema4'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema4'
+        __schema5:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema5'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema5'
+        __schema6:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema6'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema6'
+        __schema7:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema7'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema7'
+        __schema8:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema8'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema8'
+        __schema9:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema9'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema9'
+        __schema10:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema10'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema10'
+        __schema11:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema11'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema11'
+        __schema12:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema12'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema12'
+        __schema13:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema13'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema13'
+        __schema14:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema14'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema14'
+        __schema15:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema15'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema15'
+        __schema16:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema16'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductDetail/$defs/__schema16'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: A brand-scoped or global amb_sk_... API key.

@@ -1,0 +1,23 @@
+generated: '2026-10-05'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.amber.ai/pagination.md
+sources:
+- https://docs.amber.ai/pagination.md
+- https://docs.amber.ai/authentication.md
+idempotency:
+  coverage: na
+pagination:
+  style: cursor
+  response_fields:
+  - items
+  - nextCursor
+  - totalItems
+  evidence: Collections return `{ items, nextCursor, totalItems }`. The default `limit` is 25; the maximum is 100. Continue until `nextCursor`
+    is `null`.
+error_envelope: Errors contain `error` and `errorCode`. Validation errors may include additional field details.
+authentication: 'Send the API key in the `Authorization: Bearer <key>` header.'
+rate_limit_signaling: A `429` response includes a `Retry-After` header (seconds).
+field_expansion: The `include` query parameter expands related collections; each distinct collection costs one expansion credit, `include=all`
+  costs 31, with a default budget of 62 credits per request.
+docs: https://docs.amber.ai/pagination.md

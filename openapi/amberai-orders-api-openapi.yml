@@ -1,0 +1,576 @@
+openapi: 3.2.0
+info:
+  title: Amber Public Orders API
+  version: 1.3.0
+  description: Read your brand's catalog, sourcing, orders, shipments, finance, and documents. All business endpoints are read-only and require an API key. Products are Parent Products; Product Options and SKUs are separate resources. Use filters to find records, follow their IDs to related data, and paginate to retrieve every result. See the integration tutorials for complete examples and data conventions for amounts, IDs, and timestamps.
+servers:
+- url: https://app.amber.ai/api/public/v1
+tags:
+- name: Orders
+paths:
+  /brands/{brand}/orders:
+    get:
+      tags:
+      - Orders
+      summary: List Orders
+      operationId: listOrders
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: orderNumber
+        in: query
+        required: false
+        description: 'Exact order number. Example: PO-2026-0042.'
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: 'Exact order number. Example: PO-2026-0042.'
+          examples:
+          - PO-2026-0042
+      - name: externalOrderCode
+        in: query
+        required: false
+        description: Exact external purchase-order reference.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact external purchase-order reference.
+      - name: status
+        in: query
+        required: false
+        description: Exact order workflow status.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact order workflow status.
+      - name: supplierId
+        in: query
+        required: false
+        description: Supplier ID from /suppliers.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Supplier ID from /suppliers.
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderList'
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/orders/{id}:
+    get:
+      tags:
+      - Orders
+      summary: Get Orders
+      operationId: getOrders
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Stable resource identifier.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDetail'
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    OrderDetail:
+      type: object
+      properties:
+        details:
+          type: object
+          properties:
+            id:
+              type: string
+            code:
+              type: string
+            externalOrderCode:
+              type:
+              - string
+              - 'null'
+            supplierId:
+              type: string
+            status:
+              type: string
+            orderPlacedDate:
+              type:
+              - string
+              - 'null'
+            targetExFactoryDate:
+              type:
+              - string
+              - 'null'
+            agreedExFactoryDate:
+              type:
+              - string
+              - 'null'
+            revisedExFactoryDate:
+              type:
+              - string
+              - 'null'
+            actualExFactoryDate:
+              type:
+              - string
+              - 'null'
+            targetDeliveryDate:
+              type:
+              - string
+              - 'null'
+            agreedDeliveryDate:
+              type:
+              - string
+              - 'null'
+            needByDate:
+              type:
+              - string
+              - 'null'
+            currency:
+              type:
+              - string
+              - 'null'
+            orderType:
+              type: string
+            priority:
+              type: string
+            deliveryTerms:
+              type:
+              - string
+              - 'null'
+            countryOfOriginCode:
+              type:
+              - string
+              - 'null'
+            brandOwnerId:
+              type:
+              - string
+              - 'null'
+            paymentTermsId:
+              type:
+              - string
+              - 'null'
+            notes:
+              anyOf:
+              - $ref: '#/components/schemas/OrderDetail/$defs/__schema0'
+              - type: 'null'
+            memo:
+              type:
+              - string
+              - 'null'
+            customFields:
+              anyOf:
+              - $ref: '#/components/schemas/OrderDetail/$defs/__schema1'
+              - type: 'null'
+            lastActivityAt:
+              type:
+              - string
+              - 'null'
+            subtotalAmount:
+              type:
+              - string
+              - 'null'
+            dutyAmount:
+              type:
+              - string
+              - 'null'
+            dutySource:
+              type:
+              - string
+              - 'null'
+            freightCharges:
+              type:
+              - string
+              - 'null'
+            otherCosts:
+              type:
+              - string
+              - 'null'
+            totalAmount:
+              type:
+              - string
+              - 'null'
+            exchangeRate:
+              type:
+              - string
+              - 'null'
+            subtotalAmountBase:
+              type:
+              - string
+              - 'null'
+            dutyAmountBase:
+              type:
+              - string
+              - 'null'
+            freightChargesBase:
+              type:
+              - string
+              - 'null'
+            otherCostsBase:
+              type:
+              - string
+              - 'null'
+            totalAmountBase:
+              type:
+              - string
+              - 'null'
+            quoteId:
+              type:
+              - string
+              - 'null'
+            locationId:
+              type:
+              - string
+              - 'null'
+            createdAt:
+              type: string
+            updatedAt:
+              type: string
+            deletedAt:
+              type:
+              - string
+              - 'null'
+          required:
+          - id
+          - code
+          - externalOrderCode
+          - supplierId
+          - status
+          - orderPlacedDate
+          - targetExFactoryDate
+          - agreedExFactoryDate
+          - revisedExFactoryDate
+          - actualExFactoryDate
+          - targetDeliveryDate
+          - agreedDeliveryDate
+          - needByDate
+          - currency
+          - orderType
+          - priority
+          - deliveryTerms
+          - countryOfOriginCode
+          - brandOwnerId
+          - paymentTermsId
+          - notes
+          - memo
+          - customFields
+          - lastActivityAt
+          - subtotalAmount
+          - dutyAmount
+          - dutySource
+          - freightCharges
+          - otherCosts
+          - totalAmount
+          - exchangeRate
+          - subtotalAmountBase
+          - dutyAmountBase
+          - freightChargesBase
+          - otherCostsBase
+          - totalAmountBase
+          - quoteId
+          - locationId
+          - createdAt
+          - updatedAt
+          - deletedAt
+          additionalProperties: false
+        id:
+          type: string
+        orderNumber:
+          type: string
+        status:
+          type: string
+        supplier:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+          required:
+          - id
+          - name
+          additionalProperties: false
+        lineItems:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              skuId:
+                type:
+                - string
+                - 'null'
+              productVersionId:
+                type:
+                - string
+                - 'null'
+              productCode:
+                type: string
+              productName:
+                type: string
+              quantity:
+                type:
+                - number
+                - 'null'
+              unitPrice:
+                type:
+                - number
+                - 'null'
+            required:
+            - productCode
+            - productName
+            - quantity
+            - unitPrice
+            additionalProperties: false
+        totalAmount:
+          type:
+          - number
+          - 'null'
+        currency:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - orderNumber
+      - status
+      - supplier
+      - lineItems
+      - totalAmount
+      - currency
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/OrderDetail/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/OrderDetail/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/OrderDetail/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/OrderDetail/$defs/__schema1'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    OrderList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              orderNumber:
+                type: string
+              status:
+                type: string
+              supplierName:
+                type: string
+              supplierId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              totalAmount:
+                type:
+                - number
+                - 'null'
+              currency:
+                type: string
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - orderNumber
+            - status
+            - supplierName
+            - totalAmount
+            - currency
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: A brand-scoped or global amb_sk_... API key.

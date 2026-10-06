@@ -1,23 +1,2150 @@
 aid: amberai
 name: Amberai
-description: 'Amberai is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: Amberai provides an AI-native operating system for global brands, enabling digital workers to automate product development, order
+  processing, freight, payments and supplier management. The platform unifies data across ERP, logistics and finance, delivering real‑time insights
+  and machine‑speed execution for high‑growth, high‑margin enterprises.
 url: https://raw.githubusercontent.com/api-evangelist/amberai/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-05 (modular-v1; was harvest)
 specificationVersion: '0.20'
 created: '2026-09-24'
 modified: '2026-09-24'
 tags:
 - Company
-apis: []
+- AI
+- OperatingSystem
+- Automation
+- SupplyChain
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/amberai-agentic-access.yml
+- type: Spectral
+  url: rules/amberai-rules.yml
+- type: JSONLD
+  url: json-ld/amberai-context.jsonld
+- type: Vocabulary
+  url: vocabulary/amberai-vocabulary.yml
+- type: DataModel
+  url: data-model/amberai-data-model.yml
+- type: Conventions
+  url: conventions/amberai-conventions.yml
+- type: Authentication
+  url: authentication/amberai-authentication.yml
+- type: ErrorCatalog
+  url: errors/amberai-problem-types.yml
+- type: Conformance
+  url: conformance/amberai-conformance.yml
+- type: Overlay
+  url: overlays/amberai-openapi-overlay.yml
+- type: LLMsTxt
+  url: llms/amberai-llms.txt
+- type: AgentCard
+  url: a2a/amberai-a2a.yml
+- type: MCPServer
+  url: mcp/amberai-mcp.yml
+- type: WellKnown
+  url: well-known/amberai-well-known.yml
+- type: Hosts
+  url: hosts/amberai-hosts.yml
+- type: Vendors
+  url: vendors/amberai-vendors.yml
+- type: TermsOfService
+  url: https://amber.ai/legal/terms
+- type: Security
+  url: https://amber.ai/legal/security
+- type: PrivacyPolicy
+  url: https://amber.ai/legal/privacy
+- type: Blog
+  url: https://amber.ai/blog
+- type: Documentation
+  url: https://dev.amber.ai/
+- type: APIReference
+  url: https://docs.amber.ai/api-reference/brand/verify-access-and-get-the-authorized-brand
+- type: VulnerabilityDisclosure
+  url: security/amberai-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/amberai-domain-security.yml
 - type: Website
-  url: https://equityzen.com/company/amberai
+  url: https://amber.ai
+apis:
+- aid: amberai:amberai-bom-components-api
+  name: Amberai Bom Components API
+  description: The Bom Components API from Amberai — 2 operation(s) for bom components.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Bom Components
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-bom-components-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-bom-sections-api
+  name: Amberai Bom Sections API
+  description: The Bom Sections API from Amberai — 2 operation(s) for bom sections.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Bom Sections
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-bom-sections-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-bom-skus-api
+  name: Amberai Bom Skus API
+  description: The Bom Skus API from Amberai — 1 operation(s) for bom skus.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Bom Skus
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-bom-skus-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-boms-api
+  name: Amberai Boms API
+  description: The Boms API from Amberai — 2 operation(s) for boms.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Boms
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-boms-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-booking-items-api
+  name: Amberai Booking Items API
+  description: The Booking Items API from Amberai — 2 operation(s) for booking items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Booking Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-booking-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-bookings-api
+  name: Amberai Bookings API
+  description: The Bookings API from Amberai — 2 operation(s) for bookings.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-bookings-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-brand-api
+  name: Amberai Brand API
+  description: The Brand API from Amberai — 1 operation(s) for brand.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Brand
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-brand-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-brand-locations-api
+  name: Amberai Brand Locations API
+  description: The Brand Locations API from Amberai — 2 operation(s) for brand locations.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Brand Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-brand-locations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-carton-sizes-api
+  name: Amberai Carton Sizes API
+  description: The Carton Sizes API from Amberai — 2 operation(s) for carton sizes.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Carton Sizes
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-carton-sizes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-categories-api
+  name: Amberai Categories API
+  description: The Categories API from Amberai — 2 operation(s) for categories.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-categories-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-checklists-api
+  name: Amberai Checklists API
+  description: The Checklists API from Amberai — 2 operation(s) for checklists.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Checklists
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-checklists-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-collections-api
+  name: Amberai Collections API
+  description: The Collections API from Amberai — 2 operation(s) for collections.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-collections-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-colors-api
+  name: Amberai Colors API
+  description: The Colors API from Amberai — 2 operation(s) for colors.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Colors
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-colors-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-contacts-api
+  name: Amberai Contacts API
+  description: The Contacts API from Amberai — 2 operation(s) for contacts.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-contacts-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-countries-api
+  name: Amberai Countries API
+  description: The Countries API from Amberai — 2 operation(s) for countries.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Countries
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-countries-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-couriers-api
+  name: Amberai Couriers API
+  description: The Couriers API from Amberai — 2 operation(s) for couriers.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Couriers
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-couriers-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-custom-field-definitions-api
+  name: Amberai Custom Field Definitions API
+  description: >-
+    The Custom Field Definitions API from Amberai — 2 operation(s) for custom field definitions.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Custom Field Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-custom-field-definitions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-curve-axes-api
+  name: Amberai Dimension Curve Axes API
+  description: The Dimension Curve Axes API from Amberai — 2 operation(s) for dimension curve axes.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Curve Axes
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-curve-axes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-curve-axis-values-api
+  name: Amberai Dimension Curve Axis Values API
+  description: >-
+    The Dimension Curve Axis Values API from Amberai — 1 operation(s) for dimension curve axis values.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Curve Axis Values
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-curve-axis-values-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-curve-cells-api
+  name: Amberai Dimension Curve Cells API
+  description: The Dimension Curve Cells API from Amberai — 1 operation(s) for dimension curve cells.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Curve Cells
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-curve-cells-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-curves-api
+  name: Amberai Dimension Curves API
+  description: The Dimension Curves API from Amberai — 2 operation(s) for dimension curves.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Curves
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-curves-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-group-dimensions-api
+  name: Amberai Dimension Group Dimensions API
+  description: >-
+    The Dimension Group Dimensions API from Amberai — 1 operation(s) for dimension group dimensions.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Group Dimensions
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-group-dimensions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-groups-api
+  name: Amberai Dimension Groups API
+  description: The Dimension Groups API from Amberai — 2 operation(s) for dimension groups.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-groups-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimension-values-api
+  name: Amberai Dimension Values API
+  description: The Dimension Values API from Amberai — 2 operation(s) for dimension values.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimension Values
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimension-values-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-dimensions-api
+  name: Amberai Dimensions API
+  description: The Dimensions API from Amberai — 2 operation(s) for dimensions.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Dimensions
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-dimensions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-document-types-api
+  name: Amberai Document Types API
+  description: The Document Types API from Amberai — 2 operation(s) for document types.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Document Types
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-document-types-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-documents-api
+  name: Amberai Documents API
+  description: The Documents API from Amberai — 3 operation(s) for documents.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-documents-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-goods-receipt-lines-api
+  name: Amberai Goods Receipt Lines API
+  description: The Goods Receipt Lines API from Amberai — 2 operation(s) for goods receipt lines.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Goods Receipt Lines
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-goods-receipt-lines-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-goods-receipts-api
+  name: Amberai Goods Receipts API
+  description: The Goods Receipts API from Amberai — 2 operation(s) for goods receipts.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Goods Receipts
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-goods-receipts-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-images-api
+  name: Amberai Images API
+  description: The Images API from Amberai — 3 operation(s) for images.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-images-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-inventory-api
+  name: Amberai Inventory API
+  description: The Inventory API from Amberai — 2 operation(s) for inventory.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Inventory
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-inventory-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-invoice-lines-api
+  name: Amberai Invoice Lines API
+  description: The Invoice Lines API from Amberai — 2 operation(s) for invoice lines.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Invoice Lines
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-invoice-lines-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-invoices-api
+  name: Amberai Invoices API
+  description: The Invoices API from Amberai — 2 operation(s) for invoices.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-invoices-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-launch-windows-api
+  name: Amberai Launch Windows API
+  description: The Launch Windows API from Amberai — 2 operation(s) for launch windows.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Launch Windows
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-launch-windows-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-leg-items-api
+  name: Amberai Leg Items API
+  description: The Leg Items API from Amberai — 2 operation(s) for leg items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Leg Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-leg-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-legs-api
+  name: Amberai Legs API
+  description: The Legs API from Amberai — 2 operation(s) for legs.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Legs
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-legs-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-locations-api
+  name: Amberai Locations API
+  description: The Locations API from Amberai — 2 operation(s) for locations.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-locations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-material-variants-api
+  name: Amberai Material Variants API
+  description: The Material Variants API from Amberai — 2 operation(s) for material variants.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Material Variants
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-material-variants-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-materials-api
+  name: Amberai Materials API
+  description: The Materials API from Amberai — 2 operation(s) for materials.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Materials
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-materials-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-measurement-table-skus-api
+  name: Amberai Measurement Table Skus API
+  description: The Measurement Table Skus API from Amberai — 1 operation(s) for measurement table skus.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Measurement Table Skus
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-measurement-table-skus-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-measurement-tables-api
+  name: Amberai Measurement Tables API
+  description: The Measurement Tables API from Amberai — 2 operation(s) for measurement tables.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Measurement Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-measurement-tables-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-notes-api
+  name: Amberai Notes API
+  description: The Notes API from Amberai — 2 operation(s) for notes.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-notes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-option-values-api
+  name: Amberai Option Values API
+  description: The Option Values API from Amberai — 2 operation(s) for option values.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Option Values
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-option-values-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-options-api
+  name: Amberai Options API
+  description: The Options API from Amberai — 2 operation(s) for options.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Options
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-options-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-order-amendments-api
+  name: Amberai Order Amendments API
+  description: The Order Amendments API from Amberai — 2 operation(s) for order amendments.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Order Amendments
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-order-amendments-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-order-items-api
+  name: Amberai Order Items API
+  description: The Order Items API from Amberai — 2 operation(s) for order items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Order Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-order-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-order-shipments-api
+  name: Amberai Order Shipments API
+  description: The Order Shipments API from Amberai — 2 operation(s) for order shipments.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Order Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-order-shipments-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-orders-api
+  name: Amberai Orders API
+  description: The Orders API from Amberai — 2 operation(s) for orders.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-orders-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-packing-list-lines-api
+  name: Amberai Packing List Lines API
+  description: The Packing List Lines API from Amberai — 2 operation(s) for packing list lines.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Packing List Lines
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-packing-list-lines-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-packing-lists-api
+  name: Amberai Packing Lists API
+  description: The Packing Lists API from Amberai — 2 operation(s) for packing lists.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Packing Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-packing-lists-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-packing-templates-api
+  name: Amberai Packing Templates API
+  description: The Packing Templates API from Amberai — 2 operation(s) for packing templates.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Packing Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-packing-templates-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-parent-products-api
+  name: Amberai Parent Products API
+  description: The Parent Products API from Amberai — 2 operation(s) for parent products.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Parent Products
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-parent-products-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-partner-locations-api
+  name: Amberai Partner Locations API
+  description: The Partner Locations API from Amberai — 2 operation(s) for partner locations.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Partner Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-partner-locations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-partners-api
+  name: Amberai Partners API
+  description: The Partners API from Amberai — 2 operation(s) for partners.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Partners
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-partners-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-payment-agreements-api
+  name: Amberai Payment Agreements API
+  description: The Payment Agreements API from Amberai — 2 operation(s) for payment agreements.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Payment Agreements
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-payment-agreements-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-payment-milestones-api
+  name: Amberai Payment Milestones API
+  description: The Payment Milestones API from Amberai — 2 operation(s) for payment milestones.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Payment Milestones
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-payment-milestones-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-payment-receipts-api
+  name: Amberai Payment Receipts API
+  description: The Payment Receipts API from Amberai — 2 operation(s) for payment receipts.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Payment Receipts
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-payment-receipts-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-payment-settlements-api
+  name: Amberai Payment Settlements API
+  description: The Payment Settlements API from Amberai — 2 operation(s) for payment settlements.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Payment Settlements
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-payment-settlements-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-payment-terms-api
+  name: Amberai Payment Terms API
+  description: The Payment Terms API from Amberai — 2 operation(s) for payment terms.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Payment Terms
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-payment-terms-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-payments-api
+  name: Amberai Payments API
+  description: The Payments API from Amberai — 2 operation(s) for payments.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-payments-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-collections-api
+  name: Amberai Product Collections API
+  description: The Product Collections API from Amberai — 2 operation(s) for product collections.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-collections-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-launch-windows-api
+  name: Amberai Product Launch Windows API
+  description: The Product Launch Windows API from Amberai — 1 operation(s) for product launch windows.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Launch Windows
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-launch-windows-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-option-collections-api
+  name: Amberai Product Option Collections API
+  description: >-
+    The Product Option Collections API from Amberai — 1 operation(s) for product option collections.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Option Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-option-collections-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-option-dimension-values-api
+  name: Amberai Product Option Dimension Values API
+  description: >-
+    The Product Option Dimension Values API from Amberai — 1 operation(s) for product option dimension
+    values.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Option Dimension Values
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-option-dimension-values-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-option-prices-api
+  name: Amberai Product Option Prices API
+  description: The Product Option Prices API from Amberai — 1 operation(s) for product option prices.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Option Prices
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-option-prices-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-option-values-api
+  name: Amberai Product Option Values API
+  description: The Product Option Values API from Amberai — 1 operation(s) for product option values.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Option Values
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-option-values-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-options-api
+  name: Amberai Product Options API
+  description: The Product Options API from Amberai — 2 operation(s) for product options.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Options
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-options-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-relations-api
+  name: Amberai Product Relations API
+  description: The Product Relations API from Amberai — 2 operation(s) for product relations.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Relations
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-relations-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-tags-api
+  name: Amberai Product Tags API
+  description: The Product Tags API from Amberai — 1 operation(s) for product tags.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-tags-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-product-versions-api
+  name: Amberai Product Versions API
+  description: The Product Versions API from Amberai — 2 operation(s) for product versions.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Product Versions
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-product-versions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-production-run-item-revisions-api
+  name: Amberai Production Run Item Revisions API
+  description: >-
+    The Production Run Item Revisions API from Amberai — 2 operation(s) for production run item revisions.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Production Run Item Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-production-run-item-revisions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-production-run-items-api
+  name: Amberai Production Run Items API
+  description: The Production Run Items API from Amberai — 2 operation(s) for production run items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Production Run Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-production-run-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-production-runs-api
+  name: Amberai Production Runs API
+  description: The Production Runs API from Amberai — 2 operation(s) for production runs.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Production Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-production-runs-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-quote-items-api
+  name: Amberai Quote Items API
+  description: The Quote Items API from Amberai — 3 operation(s) for quote items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Quote Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-quote-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-quote-notes-api
+  name: Amberai Quote Notes API
+  description: The Quote Notes API from Amberai — 2 operation(s) for quote notes.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Quote Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-quote-notes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-quote-price-bands-api
+  name: Amberai Quote Price Bands API
+  description: The Quote Price Bands API from Amberai — 2 operation(s) for quote price bands.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Quote Price Bands
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-quote-price-bands-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-quote-revisions-api
+  name: Amberai Quote Revisions API
+  description: The Quote Revisions API from Amberai — 3 operation(s) for quote revisions.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Quote Revisions
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-quote-revisions-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-quotes-api
+  name: Amberai Quotes API
+  description: The Quotes API from Amberai — 4 operation(s) for quotes.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Quotes
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-quotes-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-sample-checklist-results-api
+  name: Amberai Sample Checklist Results API
+  description: >-
+    The Sample Checklist Results API from Amberai — 2 operation(s) for sample checklist results.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Sample Checklist Results
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-sample-checklist-results-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-sample-rounds-api
+  name: Amberai Sample Rounds API
+  description: The Sample Rounds API from Amberai — 2 operation(s) for sample rounds.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Sample Rounds
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-sample-rounds-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-samples-api
+  name: Amberai Samples API
+  description: The Samples API from Amberai — 2 operation(s) for samples.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Samples
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-samples-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipment-bookings-api
+  name: Amberai Shipment Bookings API
+  description: The Shipment Bookings API from Amberai — 2 operation(s) for shipment bookings.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipment Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipment-bookings-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipment-carton-items-api
+  name: Amberai Shipment Carton Items API
+  description: The Shipment Carton Items API from Amberai — 2 operation(s) for shipment carton items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipment Carton Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipment-carton-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipment-cartons-api
+  name: Amberai Shipment Cartons API
+  description: The Shipment Cartons API from Amberai — 2 operation(s) for shipment cartons.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipment Cartons
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipment-cartons-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipment-charges-api
+  name: Amberai Shipment Charges API
+  description: The Shipment Charges API from Amberai — 2 operation(s) for shipment charges.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipment Charges
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipment-charges-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipment-item-lineages-api
+  name: Amberai Shipment Item Lineages API
+  description: The Shipment Item Lineages API from Amberai — 2 operation(s) for shipment item lineages.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipment Item Lineages
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipment-item-lineages-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipment-items-api
+  name: Amberai Shipment Items API
+  description: The Shipment Items API from Amberai — 2 operation(s) for shipment items.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipment Items
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipment-items-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-shipments-api
+  name: Amberai Shipments API
+  description: The Shipments API from Amberai — 2 operation(s) for shipments.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Shipments
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-shipments-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-sku-dimension-values-api
+  name: Amberai Sku Dimension Values API
+  description: The Sku Dimension Values API from Amberai — 1 operation(s) for sku dimension values.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Sku Dimension Values
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-sku-dimension-values-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-skus-api
+  name: Amberai SKUs API
+  description: The SKUs API from Amberai — 2 operation(s) for skus.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - SKUs
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-skus-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-suppliers-api
+  name: Amberai Suppliers API
+  description: The Suppliers API from Amberai — 2 operation(s) for suppliers.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Suppliers
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-suppliers-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-tags-api
+  name: Amberai Tags API
+  description: The Tags API from Amberai — 2 operation(s) for tags.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-tags-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+- aid: amberai:amberai-units-of-measure-api
+  name: Amberai Units Of Measure API
+  description: The Units Of Measure API from Amberai — 2 operation(s) for units of measure.
+  humanURL: https://app.amber.ai/api/public/v1
+  baseURL: https://app.amber.ai/api/public/v1
+  tags:
+  - Units Of Measure
+  properties:
+  - type: OpenAPI
+    url: openapi/amberai-units-of-measure-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/amberai-product-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-sample-rounds-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-list-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-shipments-schema.json
+  - type: JSONSchema
+    url: json-schema/amberai-order-detail-schema.json
+x-coverage:
+  state: none
+  reason: no-developer-program
+  method: derived
+  generated: '2026-10-05'
+  generator: derive-coverage.py (pre-flight evidence)
+  detail: the company publishes no developer documentation host and no machine-readable contract on its own domain
+  evidence:
+  - url: https://docs.amber.ai/mcp
+    status: null
+  - url: https://amber.ai
+    status: 200
+  - url: https://equityzen.com/company/amberai
+    status: 403
+x-enrichment:
+  date: '2026-10-05'
+  status: enriched
+  artifacts_added: 32
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

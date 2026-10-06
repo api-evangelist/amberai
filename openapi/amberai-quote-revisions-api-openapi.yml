@@ -1,0 +1,590 @@
+openapi: 3.2.0
+info:
+  title: Amber Public Quote Revisions API
+  version: 1.3.0
+  description: Read your brand's catalog, sourcing, orders, shipments, finance, and documents. All business endpoints are read-only and require an API key. Products are Parent Products; Product Options and SKUs are separate resources. Use filters to find records, follow their IDs to related data, and paginate to retrieve every result. See the integration tutorials for complete examples and data conventions for amounts, IDs, and timestamps.
+servers:
+- url: https://app.amber.ai/api/public/v1
+tags:
+- name: Quote Revisions
+paths:
+  /brands/{brand}/quote-revisions:
+    get:
+      tags:
+      - Quote Revisions
+      summary: List Quote Revisions
+      operationId: listQuoteRevisions
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: round
+        in: query
+        required: false
+        description: Exact integer match. Use a whole number from 0 to 2147483647 without leading zeros.
+        schema:
+          type: string
+          maxLength: 10
+          pattern: ^(0|[1-9]\d*)$
+          description: Exact integer match. Use a whole number from 0 to 2147483647 without leading zeros.
+      - name: status
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: isBrandQuote
+        in: query
+        required: false
+        description: Exact Boolean match. Use true or false.
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+          description: Exact Boolean match. Use true or false.
+      - name: rfqId
+        in: query
+        required: false
+        description: Parent Quote ID from /quotes. Navigate with /quotes/{id}/revisions.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Parent Quote ID from /quotes. Navigate with /quotes/{id}/revisions.
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteRevisionsList'
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/quote-revisions/{id}:
+    get:
+      tags:
+      - Quote Revisions
+      summary: Get Quote Revisions
+      operationId: getQuoteRevisions
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Stable resource identifier.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteRevisions'
+          links:
+            items:
+              operationId: listItemsForQuoteRevision
+              parameters:
+                brand: $request.path.brand
+                id: $response.body#/id
+              description: Read this Quote Revision's items.
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/quote-revisions/{id}/items:
+    get:
+      tags:
+      - Quote Revisions
+      summary: List items for a Quote Revision
+      operationId: listItemsForQuoteRevision
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Quote Revision ID from /quote-revisions.
+        schema:
+          type: string
+          format: uuid
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteItemsList'
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    QuoteItemsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              quoteId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+                description: Quote Revision ID from /quote-revisions, not a Parent Quote ID. Navigate with /quote-revisions/{id}/items.
+              skuId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              productVersionId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              itemDescription:
+                type:
+                - string
+                - 'null'
+              notes:
+                type:
+                - string
+                - 'null'
+              createdAt:
+                type:
+                - string
+                - 'null'
+              updatedAt:
+                type:
+                - string
+                - 'null'
+            required:
+            - id
+            - quoteId
+            - skuId
+            - productVersionId
+            - itemDescription
+            - notes
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+    QuoteRevisions:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        rfqId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Parent Quote ID from /quotes. Navigate with /quotes/{id}/revisions.
+        round:
+          type: number
+        status:
+          type: string
+        isBrandQuote:
+          type: boolean
+        submittedAt:
+          type:
+          - string
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        incoterm:
+          type:
+          - string
+          - 'null'
+        comment:
+          type:
+          - string
+          - 'null'
+        leadTimeDays:
+          type:
+          - number
+          - 'null'
+        quoteDueDate:
+          type:
+          - string
+          - 'null'
+        targetShipDate:
+          type:
+          - string
+          - 'null'
+        createdById:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        lastActivityAt:
+          type:
+          - string
+          - 'null'
+        exchangeRate:
+          type:
+          - string
+          - 'null'
+        totalAmountBase:
+          type:
+          - string
+          - 'null'
+        paymentTermId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - rfqId
+      - round
+      - status
+      - isBrandQuote
+      - submittedAt
+      - currency
+      - incoterm
+      - comment
+      - leadTimeDays
+      - quoteDueDate
+      - targetShipDate
+      - createdById
+      - lastActivityAt
+      - exchangeRate
+      - totalAmountBase
+      - paymentTermId
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+    QuoteRevisionsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              rfqId:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                description: Parent Quote ID from /quotes. Navigate with /quotes/{id}/revisions.
+              round:
+                type: number
+              status:
+                type: string
+              isBrandQuote:
+                type: boolean
+              submittedAt:
+                type:
+                - string
+                - 'null'
+              currency:
+                type:
+                - string
+                - 'null'
+              incoterm:
+                type:
+                - string
+                - 'null'
+              comment:
+                type:
+                - string
+                - 'null'
+              leadTimeDays:
+                type:
+                - number
+                - 'null'
+              quoteDueDate:
+                type:
+                - string
+                - 'null'
+              targetShipDate:
+                type:
+                - string
+                - 'null'
+              createdById:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              lastActivityAt:
+                type:
+                - string
+                - 'null'
+              exchangeRate:
+                type:
+                - string
+                - 'null'
+              totalAmountBase:
+                type:
+                - string
+                - 'null'
+              paymentTermId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              createdAt:
+                type:
+                - string
+                - 'null'
+              updatedAt:
+                type:
+                - string
+                - 'null'
+            required:
+            - id
+            - rfqId
+            - round
+            - status
+            - isBrandQuote
+            - submittedAt
+            - currency
+            - incoterm
+            - comment
+            - leadTimeDays
+            - quoteDueDate
+            - targetShipDate
+            - createdById
+            - lastActivityAt
+            - exchangeRate
+            - totalAmountBase
+            - paymentTermId
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: A brand-scoped or global amb_sk_... API key.

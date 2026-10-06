@@ -1,0 +1,19 @@
+generated: '2026-10-05'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.amber.ai/authentication.md
+sources:
+- https://docs.amber.ai/authentication.md
+description: Authentication schemes as published on the page.
+schemes:
+- type: http-bearer
+  name: API key
+  evidence: 'For REST API requests, send your API key in the Authorization header:'
+  location: header
+  header: Authorization
+  how_to_obtain: Ask your Amber system administrator to create a key in Settings → API keys.
+- type: oauth2
+  name: MCP OAuth
+  evidence: Browser connector (Claude, etc.) POST /api/public/mcp OAuth access token after signed-in consent on Amber
+  how_to_obtain: Obtain an OAuth access token after signed‑in consent on Amber.
+docs: https://docs.amber.ai/authentication.md

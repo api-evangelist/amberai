@@ -1,0 +1,448 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amberai/main/json-schema/amberai-shipments-schema.json",
+  "title": "Shipments",
+  "x-generated": "2026-10-05",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amberai-openapi.json#/components/schemas/Shipments",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "shipmentCode": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "trackingNumber": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "carrier": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "carrierSlug": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "freightForwarder": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shipmentMode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "containerNumbers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "totalPacks": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "grossWeightValue": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "grossWeightUom": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "volumeValue": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "volumeUom": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "incoterm": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "incotermLocation": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "targetShipDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "agreedShipDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "revisedShipDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actualShipDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "agreedPickupDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "revisedPickupDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actualPickupDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "estimatedPortArrivalDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actualPortArrivalDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "targetArrivalDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "estimatedArrivalDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customsClearedDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customsClearedDateSource": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actualArrivalDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "actualArrivalDateSource": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cargoReadyDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "bookingReceivedDate": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "houseBillNumber": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "masterBillNumber": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "estimatedCost": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "finalCost": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customsCost": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "costCurrency": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "conveyanceReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "loadType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "loadUtilization": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "originId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "dischargeLocationId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "destinationId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pickupLocationId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "externalShipmentId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "externalStatus": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "externalBookingReference": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lastEventOccurredAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "brandOwnerId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "customFields": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/__schema0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "shipmentCode",
+    "status",
+    "trackingNumber",
+    "carrier",
+    "carrierSlug",
+    "freightForwarder",
+    "shipmentMode",
+    "containerNumbers",
+    "totalPacks",
+    "grossWeightValue",
+    "grossWeightUom",
+    "volumeValue",
+    "volumeUom",
+    "incoterm",
+    "incotermLocation",
+    "targetShipDate",
+    "agreedShipDate",
+    "revisedShipDate",
+    "actualShipDate",
+    "agreedPickupDate",
+    "revisedPickupDate",
+    "actualPickupDate",
+    "estimatedPortArrivalDate",
+    "actualPortArrivalDate",
+    "targetArrivalDate",
+    "estimatedArrivalDate",
+    "customsClearedDate",
+    "customsClearedDateSource",
+    "actualArrivalDate",
+    "actualArrivalDateSource",
+    "cargoReadyDate",
+    "bookingReceivedDate",
+    "houseBillNumber",
+    "masterBillNumber",
+    "estimatedCost",
+    "finalCost",
+    "customsCost",
+    "costCurrency",
+    "conveyanceReference",
+    "loadType",
+    "loadUtilization",
+    "originId",
+    "dischargeLocationId",
+    "destinationId",
+    "pickupLocationId",
+    "source",
+    "externalShipmentId",
+    "externalStatus",
+    "externalBookingReference",
+    "lastEventOccurredAt",
+    "brandOwnerId",
+    "customFields",
+    "createdAt",
+    "updatedAt"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}

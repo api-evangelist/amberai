@@ -1,0 +1,934 @@
+openapi: 3.2.0
+info:
+  title: Amber Public Shipments API
+  version: 1.3.0
+  description: Read your brand's catalog, sourcing, orders, shipments, finance, and documents. All business endpoints are read-only and require an API key. Products are Parent Products; Product Options and SKUs are separate resources. Use filters to find records, follow their IDs to related data, and paginate to retrieve every result. See the integration tutorials for complete examples and data conventions for amounts, IDs, and timestamps.
+servers:
+- url: https://app.amber.ai/api/public/v1
+tags:
+- name: Shipments
+paths:
+  /brands/{brand}/shipments:
+    get:
+      tags:
+      - Shipments
+      summary: List Shipments
+      operationId: listShipments
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: shipmentCode
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: trackingNumber
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: carrier
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: carrierSlug
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: freightForwarder
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: shipmentMode
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: houseBillNumber
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: masterBillNumber
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: externalShipmentId
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: externalBookingReference
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: source
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: status
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: dischargeLocationId
+        in: query
+        required: false
+        description: Exact related entity ID.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Exact related entity ID.
+      - name: pickupLocationId
+        in: query
+        required: false
+        description: Exact related entity ID.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Exact related entity ID.
+      - name: containerNumber
+        in: query
+        required: false
+        description: Exact member of containerNumbers.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact member of containerNumbers.
+      - name: originId
+        in: query
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      - name: destinationId
+        in: query
+        required: false
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentsList'
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/shipments/{id}:
+    get:
+      tags:
+      - Shipments
+      summary: Get Shipments
+      operationId: getShipments
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Stable resource identifier.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Shipments'
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    Shipments:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        shipmentCode:
+          type: string
+        status:
+          type: string
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+        carrier:
+          type:
+          - string
+          - 'null'
+        carrierSlug:
+          type:
+          - string
+          - 'null'
+        freightForwarder:
+          type:
+          - string
+          - 'null'
+        shipmentMode:
+          type:
+          - string
+          - 'null'
+        containerNumbers:
+          type: array
+          items:
+            type: string
+        totalPacks:
+          type:
+          - number
+          - 'null'
+        grossWeightValue:
+          type:
+          - string
+          - 'null'
+        grossWeightUom:
+          type:
+          - string
+          - 'null'
+        volumeValue:
+          type:
+          - string
+          - 'null'
+        volumeUom:
+          type:
+          - string
+          - 'null'
+        incoterm:
+          type:
+          - string
+          - 'null'
+        incotermLocation:
+          type:
+          - string
+          - 'null'
+        targetShipDate:
+          type:
+          - string
+          - 'null'
+        agreedShipDate:
+          type:
+          - string
+          - 'null'
+        revisedShipDate:
+          type:
+          - string
+          - 'null'
+        actualShipDate:
+          type:
+          - string
+          - 'null'
+        agreedPickupDate:
+          type:
+          - string
+          - 'null'
+        revisedPickupDate:
+          type:
+          - string
+          - 'null'
+        actualPickupDate:
+          type:
+          - string
+          - 'null'
+        estimatedPortArrivalDate:
+          type:
+          - string
+          - 'null'
+        actualPortArrivalDate:
+          type:
+          - string
+          - 'null'
+        targetArrivalDate:
+          type:
+          - string
+          - 'null'
+        estimatedArrivalDate:
+          type:
+          - string
+          - 'null'
+        customsClearedDate:
+          type:
+          - string
+          - 'null'
+        customsClearedDateSource:
+          type:
+          - string
+          - 'null'
+        actualArrivalDate:
+          type:
+          - string
+          - 'null'
+        actualArrivalDateSource:
+          type:
+          - string
+          - 'null'
+        cargoReadyDate:
+          type:
+          - string
+          - 'null'
+        bookingReceivedDate:
+          type:
+          - string
+          - 'null'
+        houseBillNumber:
+          type:
+          - string
+          - 'null'
+        masterBillNumber:
+          type:
+          - string
+          - 'null'
+        estimatedCost:
+          type:
+          - string
+          - 'null'
+        finalCost:
+          type:
+          - string
+          - 'null'
+        customsCost:
+          type:
+          - string
+          - 'null'
+        costCurrency:
+          type:
+          - string
+          - 'null'
+        conveyanceReference:
+          type:
+          - string
+          - 'null'
+        loadType:
+          type:
+          - string
+          - 'null'
+        loadUtilization:
+          type:
+          - string
+          - 'null'
+        originId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        dischargeLocationId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        destinationId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        pickupLocationId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        source:
+          type:
+          - string
+          - 'null'
+        externalShipmentId:
+          type:
+          - string
+          - 'null'
+        externalStatus:
+          type:
+          - string
+          - 'null'
+        externalBookingReference:
+          type:
+          - string
+          - 'null'
+        lastEventOccurredAt:
+          type:
+          - string
+          - 'null'
+        brandOwnerId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        customFields:
+          anyOf:
+          - $ref: '#/components/schemas/Shipments/$defs/__schema0'
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - shipmentCode
+      - status
+      - trackingNumber
+      - carrier
+      - carrierSlug
+      - freightForwarder
+      - shipmentMode
+      - containerNumbers
+      - totalPacks
+      - grossWeightValue
+      - grossWeightUom
+      - volumeValue
+      - volumeUom
+      - incoterm
+      - incotermLocation
+      - targetShipDate
+      - agreedShipDate
+      - revisedShipDate
+      - actualShipDate
+      - agreedPickupDate
+      - revisedPickupDate
+      - actualPickupDate
+      - estimatedPortArrivalDate
+      - actualPortArrivalDate
+      - targetArrivalDate
+      - estimatedArrivalDate
+      - customsClearedDate
+      - customsClearedDateSource
+      - actualArrivalDate
+      - actualArrivalDateSource
+      - cargoReadyDate
+      - bookingReceivedDate
+      - houseBillNumber
+      - masterBillNumber
+      - estimatedCost
+      - finalCost
+      - customsCost
+      - costCurrency
+      - conveyanceReference
+      - loadType
+      - loadUtilization
+      - originId
+      - dischargeLocationId
+      - destinationId
+      - pickupLocationId
+      - source
+      - externalShipmentId
+      - externalStatus
+      - externalBookingReference
+      - lastEventOccurredAt
+      - brandOwnerId
+      - customFields
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Shipments/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Shipments/$defs/__schema0'
+    ShipmentsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              shipmentCode:
+                type: string
+              status:
+                type: string
+              trackingNumber:
+                type:
+                - string
+                - 'null'
+              carrier:
+                type:
+                - string
+                - 'null'
+              carrierSlug:
+                type:
+                - string
+                - 'null'
+              freightForwarder:
+                type:
+                - string
+                - 'null'
+              shipmentMode:
+                type:
+                - string
+                - 'null'
+              containerNumbers:
+                type: array
+                items:
+                  type: string
+              totalPacks:
+                type:
+                - number
+                - 'null'
+              grossWeightValue:
+                type:
+                - string
+                - 'null'
+              grossWeightUom:
+                type:
+                - string
+                - 'null'
+              volumeValue:
+                type:
+                - string
+                - 'null'
+              volumeUom:
+                type:
+                - string
+                - 'null'
+              incoterm:
+                type:
+                - string
+                - 'null'
+              incotermLocation:
+                type:
+                - string
+                - 'null'
+              targetShipDate:
+                type:
+                - string
+                - 'null'
+              agreedShipDate:
+                type:
+                - string
+                - 'null'
+              revisedShipDate:
+                type:
+                - string
+                - 'null'
+              actualShipDate:
+                type:
+                - string
+                - 'null'
+              agreedPickupDate:
+                type:
+                - string
+                - 'null'
+              revisedPickupDate:
+                type:
+                - string
+                - 'null'
+              actualPickupDate:
+                type:
+                - string
+                - 'null'
+              estimatedPortArrivalDate:
+                type:
+                - string
+                - 'null'
+              actualPortArrivalDate:
+                type:
+                - string
+                - 'null'
+              targetArrivalDate:
+                type:
+                - string
+                - 'null'
+              estimatedArrivalDate:
+                type:
+                - string
+                - 'null'
+              customsClearedDate:
+                type:
+                - string
+                - 'null'
+              customsClearedDateSource:
+                type:
+                - string
+                - 'null'
+              actualArrivalDate:
+                type:
+                - string
+                - 'null'
+              actualArrivalDateSource:
+                type:
+                - string
+                - 'null'
+              cargoReadyDate:
+                type:
+                - string
+                - 'null'
+              bookingReceivedDate:
+                type:
+                - string
+                - 'null'
+              houseBillNumber:
+                type:
+                - string
+                - 'null'
+              masterBillNumber:
+                type:
+                - string
+                - 'null'
+              estimatedCost:
+                type:
+                - string
+                - 'null'
+              finalCost:
+                type:
+                - string
+                - 'null'
+              customsCost:
+                type:
+                - string
+                - 'null'
+              costCurrency:
+                type:
+                - string
+                - 'null'
+              conveyanceReference:
+                type:
+                - string
+                - 'null'
+              loadType:
+                type:
+                - string
+                - 'null'
+              loadUtilization:
+                type:
+                - string
+                - 'null'
+              originId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              dischargeLocationId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              destinationId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              pickupLocationId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              source:
+                type:
+                - string
+                - 'null'
+              externalShipmentId:
+                type:
+                - string
+                - 'null'
+              externalStatus:
+                type:
+                - string
+                - 'null'
+              externalBookingReference:
+                type:
+                - string
+                - 'null'
+              lastEventOccurredAt:
+                type:
+                - string
+                - 'null'
+              brandOwnerId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              customFields:
+                anyOf:
+                - $ref: '#/components/schemas/ShipmentsList/$defs/__schema0'
+                - type: 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - shipmentCode
+            - status
+            - trackingNumber
+            - carrier
+            - carrierSlug
+            - freightForwarder
+            - shipmentMode
+            - containerNumbers
+            - totalPacks
+            - grossWeightValue
+            - grossWeightUom
+            - volumeValue
+            - volumeUom
+            - incoterm
+            - incotermLocation
+            - targetShipDate
+            - agreedShipDate
+            - revisedShipDate
+            - actualShipDate
+            - agreedPickupDate
+            - revisedPickupDate
+            - actualPickupDate
+            - estimatedPortArrivalDate
+            - actualPortArrivalDate
+            - targetArrivalDate
+            - estimatedArrivalDate
+            - customsClearedDate
+            - customsClearedDateSource
+            - actualArrivalDate
+            - actualArrivalDateSource
+            - cargoReadyDate
+            - bookingReceivedDate
+            - houseBillNumber
+            - masterBillNumber
+            - estimatedCost
+            - finalCost
+            - customsCost
+            - costCurrency
+            - conveyanceReference
+            - loadType
+            - loadUtilization
+            - originId
+            - dischargeLocationId
+            - destinationId
+            - pickupLocationId
+            - source
+            - externalShipmentId
+            - externalStatus
+            - externalBookingReference
+            - lastEventOccurredAt
+            - brandOwnerId
+            - customFields
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ShipmentsList/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ShipmentsList/$defs/__schema0'
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: A brand-scoped or global amb_sk_... API key.

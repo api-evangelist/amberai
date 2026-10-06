@@ -1,0 +1,1185 @@
+{
+  "@context": {
+    "@vocab": "https://amber.ai/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "amberai": "https://amber.ai/schema#",
+    "Error": "amberai:Error",
+    "error": {
+      "@id": "amberai:error",
+      "@type": "xsd:string"
+    },
+    "errorCode": {
+      "@id": "amberai:errorCode",
+      "@type": "xsd:string"
+    },
+    "details": {
+      "@id": "amberai:details",
+      "@type": "@id"
+    },
+    "Brand": "amberai:Brand",
+    "id": {
+      "@id": "amberai:id",
+      "@type": "xsd:string"
+    },
+    "slug": {
+      "@id": "amberai:slug",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "amberai:name",
+      "@type": "xsd:string"
+    },
+    "ProductList": "amberai:ProductList",
+    "items": {
+      "@id": "amberai:items",
+      "@container": "@list"
+    },
+    "nextCursor": {
+      "@id": "amberai:nextCursor",
+      "@type": "xsd:string"
+    },
+    "totalItems": {
+      "@id": "amberai:totalItems",
+      "@type": "xsd:integer"
+    },
+    "ProductDetail": "amberai:ProductDetail",
+    "launchWindow": {
+      "@id": "amberai:launchWindow",
+      "@type": "xsd:string"
+    },
+    "estimatedVolume": {
+      "@id": "amberai:estimatedVolume",
+      "@type": "xsd:decimal"
+    },
+    "globalMoq": {
+      "@id": "amberai:globalMoq",
+      "@type": "xsd:decimal"
+    },
+    "htsCodeOverride": {
+      "@id": "amberai:htsCodeOverride",
+      "@type": "xsd:string"
+    },
+    "customFields": {
+      "@id": "amberai:customFields"
+    },
+    "productOwnerUserId": {
+      "@id": "amberai:productOwnerUserId",
+      "@type": "xsd:string"
+    },
+    "currentProductVersionId": {
+      "@id": "amberai:currentProductVersionId",
+      "@type": "xsd:string"
+    },
+    "optionGroupCurveId": {
+      "@id": "amberai:optionGroupCurveId",
+      "@type": "xsd:string"
+    },
+    "lastActivityAt": {
+      "@id": "amberai:lastActivityAt",
+      "@type": "xsd:string"
+    },
+    "included": {
+      "@id": "amberai:included"
+    },
+    "code": {
+      "@id": "amberai:code",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "amberai:status",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "amberai:description",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "amberai:category",
+      "@type": "xsd:string"
+    },
+    "categoryId": {
+      "@id": "amberai:categoryId",
+      "@type": "xsd:string"
+    },
+    "variants": {
+      "@id": "amberai:variants",
+      "@container": "@list"
+    },
+    "suppliers": {
+      "@id": "amberai:suppliers",
+      "@container": "@list"
+    },
+    "createdAt": {
+      "@id": "amberai:createdAt",
+      "@type": "xsd:string"
+    },
+    "updatedAt": {
+      "@id": "amberai:updatedAt",
+      "@type": "xsd:string"
+    },
+    "OrderList": "amberai:OrderList",
+    "OrderDetail": "amberai:OrderDetail",
+    "orderNumber": {
+      "@id": "amberai:orderNumber",
+      "@type": "xsd:string"
+    },
+    "supplier": {
+      "@id": "amberai:supplier"
+    },
+    "lineItems": {
+      "@id": "amberai:lineItems",
+      "@container": "@list"
+    },
+    "totalAmount": {
+      "@id": "amberai:totalAmount",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "amberai:currency",
+      "@type": "xsd:string"
+    },
+    "SupplierList": "amberai:SupplierList",
+    "SupplierDetail": "amberai:SupplierDetail",
+    "shortName": {
+      "@id": "amberai:shortName",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "amberai:country",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "amberai:address",
+      "@type": "xsd:string"
+    },
+    "contacts": {
+      "@id": "amberai:contacts",
+      "@container": "@list"
+    },
+    "QuoteList": "amberai:QuoteList",
+    "QuoteDetail": "amberai:QuoteDetail",
+    "rfqNumber": {
+      "@id": "amberai:rfqNumber",
+      "@type": "xsd:string"
+    },
+    "quoteNumber": {
+      "@id": "amberai:quoteNumber",
+      "@type": "xsd:string"
+    },
+    "product": {
+      "@id": "amberai:product"
+    },
+    "targetPrice": {
+      "@id": "amberai:targetPrice",
+      "@type": "xsd:decimal"
+    },
+    "quantity": {
+      "@id": "amberai:quantity",
+      "@type": "xsd:decimal"
+    },
+    "notes": {
+      "@id": "amberai:notes",
+      "@type": "xsd:string"
+    },
+    "DocumentContent": "amberai:DocumentContent",
+    "url": {
+      "@id": "amberai:url",
+      "@type": "xsd:string"
+    },
+    "expiresAt": {
+      "@id": "amberai:expiresAt",
+      "@type": "xsd:string"
+    },
+    "extent": {
+      "@id": "amberai:extent"
+    },
+    "ProductOptions": "amberai:ProductOptions",
+    "productId": {
+      "@id": "amberai:productId",
+      "@type": "xsd:string"
+    },
+    "vendorFacingProductName": {
+      "@id": "amberai:vendorFacingProductName",
+      "@type": "xsd:string"
+    },
+    "sequence": {
+      "@id": "amberai:sequence",
+      "@type": "xsd:decimal"
+    },
+    "supplierId": {
+      "@id": "amberai:supplierId"
+    },
+    "collectionId": {
+      "@id": "amberai:collectionId"
+    },
+    "channel": {
+      "@id": "amberai:channel",
+      "@type": "xsd:string"
+    },
+    "measurementTableId": {
+      "@id": "amberai:measurementTableId"
+    },
+    "construction": {
+      "@id": "amberai:construction",
+      "@type": "xsd:string"
+    },
+    "hsCode": {
+      "@id": "amberai:hsCode",
+      "@type": "xsd:string"
+    },
+    "hsConfirmed": {
+      "@id": "amberai:hsConfirmed",
+      "@type": "xsd:boolean"
+    },
+    "hsWhy": {
+      "@id": "amberai:hsWhy",
+      "@type": "xsd:string"
+    },
+    "deletedAt": {
+      "@id": "amberai:deletedAt",
+      "@type": "xsd:string"
+    },
+    "ProductOptionsList": "amberai:ProductOptionsList",
+    "ProductOptionsQuery": "amberai:ProductOptionsQuery",
+    "cursor": {
+      "@id": "amberai:cursor",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "amberai:limit",
+      "@type": "xsd:integer"
+    },
+    "Skus": "amberai:Skus",
+    "upc": {
+      "@id": "amberai:upc",
+      "@type": "xsd:string"
+    },
+    "retailPrice": {
+      "@id": "amberai:retailPrice",
+      "@type": "xsd:string"
+    },
+    "wholesalePrice": {
+      "@id": "amberai:wholesalePrice",
+      "@type": "xsd:string"
+    },
+    "colorId": {
+      "@id": "amberai:colorId"
+    },
+    "productOptionId": {
+      "@id": "amberai:productOptionId"
+    },
+    "targetFobOverride": {
+      "@id": "amberai:targetFobOverride",
+      "@type": "xsd:string"
+    },
+    "launchWindowOverride": {
+      "@id": "amberai:launchWindowOverride",
+      "@type": "xsd:string"
+    },
+    "collectionIdsOverride": {
+      "@id": "amberai:collectionIdsOverride"
+    },
+    "weightValue": {
+      "@id": "amberai:weightValue",
+      "@type": "xsd:string"
+    },
+    "weightUomId": {
+      "@id": "amberai:weightUomId"
+    },
+    "SkusList": "amberai:SkusList",
+    "SkusQuery": "amberai:SkusQuery",
+    "ProductVersions": "amberai:ProductVersions",
+    "versionNumber": {
+      "@id": "amberai:versionNumber",
+      "@type": "xsd:decimal"
+    },
+    "versionName": {
+      "@id": "amberai:versionName",
+      "@type": "xsd:string"
+    },
+    "isActive": {
+      "@id": "amberai:isActive",
+      "@type": "xsd:boolean"
+    },
+    "targetFob": {
+      "@id": "amberai:targetFob",
+      "@type": "xsd:string"
+    },
+    "targetFobCurrency": {
+      "@id": "amberai:targetFobCurrency",
+      "@type": "xsd:string"
+    },
+    "priceCurrency": {
+      "@id": "amberai:priceCurrency",
+      "@type": "xsd:string"
+    },
+    "moq": {
+      "@id": "amberai:moq",
+      "@type": "xsd:decimal"
+    },
+    "moqByColor": {
+      "@id": "amberai:moqByColor",
+      "@type": "xsd:decimal"
+    },
+    "moqLastConfirmedAt": {
+      "@id": "amberai:moqLastConfirmedAt",
+      "@type": "xsd:string"
+    },
+    "technicalSpecs": {
+      "@id": "amberai:technicalSpecs"
+    },
+    "packagingSpecs": {
+      "@id": "amberai:packagingSpecs"
+    },
+    "labelingSpecs": {
+      "@id": "amberai:labelingSpecs"
+    },
+    "sizeSpecs": {
+      "@id": "amberai:sizeSpecs"
+    },
+    "baseVersionId": {
+      "@id": "amberai:baseVersionId"
+    },
+    "protoId": {
+      "@id": "amberai:protoId"
+    },
+    "partnerId": {
+      "@id": "amberai:partnerId"
+    },
+    "changesSummary": {
+      "@id": "amberai:changesSummary",
+      "@type": "xsd:string"
+    },
+    "approvedAt": {
+      "@id": "amberai:approvedAt",
+      "@type": "xsd:string"
+    },
+    "approvedBy": {
+      "@id": "amberai:approvedBy"
+    },
+    "ProductVersionsList": "amberai:ProductVersionsList",
+    "ProductVersionsQuery": "amberai:ProductVersionsQuery",
+    "Boms": "amberai:Boms",
+    "productVersionId": {
+      "@id": "amberai:productVersionId",
+      "@type": "xsd:string"
+    },
+    "isDefault": {
+      "@id": "amberai:isDefault",
+      "@type": "xsd:boolean"
+    },
+    "constructionAnnotations": {
+      "@id": "amberai:constructionAnnotations"
+    },
+    "BomsList": "amberai:BomsList",
+    "BomsQuery": "amberai:BomsQuery",
+    "BomComponents": "amberai:BomComponents",
+    "bomId": {
+      "@id": "amberai:bomId",
+      "@type": "xsd:string"
+    },
+    "componentId": {
+      "@id": "amberai:componentId"
+    },
+    "componentVariantId": {
+      "@id": "amberai:componentVariantId"
+    },
+    "bomSectionId": {
+      "@id": "amberai:bomSectionId"
+    },
+    "composition": {
+      "@id": "amberai:composition",
+      "@type": "xsd:string"
+    },
+    "unitPrice": {
+      "@id": "amberai:unitPrice",
+      "@type": "xsd:string"
+    },
+    "gsm": {
+      "@id": "amberai:gsm",
+      "@type": "xsd:decimal"
+    },
+    "properties": {
+      "@id": "amberai:properties"
+    },
+    "showOnPo": {
+      "@id": "amberai:showOnPo",
+      "@type": "xsd:boolean"
+    },
+    "BomComponentsList": "amberai:BomComponentsList",
+    "BomComponentsQuery": "amberai:BomComponentsQuery",
+    "MeasurementTables": "amberai:MeasurementTables",
+    "MeasurementTablesList": "amberai:MeasurementTablesList",
+    "MeasurementTablesQuery": "amberai:MeasurementTablesQuery",
+    "ProductRelations": "amberai:ProductRelations",
+    "relatedProductId": {
+      "@id": "amberai:relatedProductId",
+      "@type": "xsd:string"
+    },
+    "relationType": {
+      "@id": "amberai:relationType",
+      "@type": "xsd:string"
+    },
+    "createdByUserId": {
+      "@id": "amberai:createdByUserId"
+    },
+    "ProductRelationsList": "amberai:ProductRelationsList",
+    "ProductRelationsQuery": "amberai:ProductRelationsQuery",
+    "ProductOptionValues": "amberai:ProductOptionValues",
+    "optionValueId": {
+      "@id": "amberai:optionValueId",
+      "@type": "xsd:string"
+    },
+    "ProductOptionValuesList": "amberai:ProductOptionValuesList",
+    "ProductOptionValuesQuery": "amberai:ProductOptionValuesQuery",
+    "ProductOptionDimensionValues": "amberai:ProductOptionDimensionValues",
+    "dimensionValueId": {
+      "@id": "amberai:dimensionValueId",
+      "@type": "xsd:string"
+    },
+    "ProductOptionDimensionValuesList": "amberai:ProductOptionDimensionValuesList",
+    "ProductOptionDimensionValuesQuery": "amberai:ProductOptionDimensionValuesQuery",
+    "ProductOptionPrices": "amberai:ProductOptionPrices",
+    "kind": {
+      "@id": "amberai:kind",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "amberai:amount",
+      "@type": "xsd:string"
+    },
+    "ProductOptionPricesList": "amberai:ProductOptionPricesList",
+    "ProductOptionPricesQuery": "amberai:ProductOptionPricesQuery",
+    "ProductOptionCollections": "amberai:ProductOptionCollections",
+    "ProductOptionCollectionsList": "amberai:ProductOptionCollectionsList",
+    "ProductOptionCollectionsQuery": "amberai:ProductOptionCollectionsQuery",
+    "BomSkus": "amberai:BomSkus",
+    "skuId": {
+      "@id": "amberai:skuId",
+      "@type": "xsd:string"
+    },
+    "BomSkusList": "amberai:BomSkusList",
+    "BomSkusQuery": "amberai:BomSkusQuery",
+    "MeasurementTableSkus": "amberai:MeasurementTableSkus",
+    "MeasurementTableSkusList": "amberai:MeasurementTableSkusList",
+    "MeasurementTableSkusQuery": "amberai:MeasurementTableSkusQuery",
+    "SkuDimensionValues": "amberai:SkuDimensionValues",
+    "SkuDimensionValuesList": "amberai:SkuDimensionValuesList",
+    "SkuDimensionValuesQuery": "amberai:SkuDimensionValuesQuery",
+    "ProductCollections": "amberai:ProductCollections",
+    "ProductCollectionsList": "amberai:ProductCollectionsList",
+    "ProductCollectionsQuery": "amberai:ProductCollectionsQuery",
+    "ProductTags": "amberai:ProductTags",
+    "tagId": {
+      "@id": "amberai:tagId",
+      "@type": "xsd:string"
+    },
+    "ProductTagsList": "amberai:ProductTagsList",
+    "ProductTagsQuery": "amberai:ProductTagsQuery",
+    "ProductLaunchWindows": "amberai:ProductLaunchWindows",
+    "launchWindowId": {
+      "@id": "amberai:launchWindowId",
+      "@type": "xsd:string"
+    },
+    "ProductLaunchWindowsList": "amberai:ProductLaunchWindowsList",
+    "ProductLaunchWindowsQuery": "amberai:ProductLaunchWindowsQuery",
+    "Samples": "amberai:Samples",
+    "startDate": {
+      "@id": "amberai:startDate",
+      "@type": "xsd:string"
+    },
+    "endDate": {
+      "@id": "amberai:endDate",
+      "@type": "xsd:string"
+    },
+    "targetCost": {
+      "@id": "amberai:targetCost",
+      "@type": "xsd:string"
+    },
+    "protoOwnerUserId": {
+      "@id": "amberai:protoOwnerUserId"
+    },
+    "SamplesList": "amberai:SamplesList",
+    "SamplesQuery": "amberai:SamplesQuery",
+    "SampleRounds": "amberai:SampleRounds",
+    "trackingNumber": {
+      "@id": "amberai:trackingNumber",
+      "@type": "xsd:string"
+    },
+    "comment": {
+      "@id": "amberai:comment",
+      "@type": "xsd:string"
+    },
+    "sampleStage": {
+      "@id": "amberai:sampleStage",
+      "@type": "xsd:string"
+    },
+    "sampleMeasurements": {
+      "@id": "amberai:sampleMeasurements"
+    },
+    "annotations": {
+      "@id": "amberai:annotations"
+    },
+    "colors": {
+      "@id": "amberai:colors"
+    },
+    "sizes": {
+      "@id": "amberai:sizes"
+    },
+    "quantities": {
+      "@id": "amberai:quantities"
+    },
+    "referenceBomId": {
+      "@id": "amberai:referenceBomId"
+    },
+    "dueDate": {
+      "@id": "amberai:dueDate",
+      "@type": "xsd:string"
+    },
+    "eta": {
+      "@id": "amberai:eta",
+      "@type": "xsd:string"
+    },
+    "shipToAddress": {
+      "@id": "amberai:shipToAddress",
+      "@type": "xsd:string"
+    },
+    "roundNotes": {
+      "@id": "amberai:roundNotes",
+      "@type": "xsd:string"
+    },
+    "responsibleUserId": {
+      "@id": "amberai:responsibleUserId"
+    },
+    "supplierRatings": {
+      "@id": "amberai:supplierRatings"
+    },
+    "supplierRatingNotes": {
+      "@id": "amberai:supplierRatingNotes",
+      "@type": "xsd:string"
+    },
+    "specChangeRequests": {
+      "@id": "amberai:specChangeRequests"
+    },
+    "materializedSpecs": {
+      "@id": "amberai:materializedSpecs"
+    },
+    "checklist": {
+      "@id": "amberai:checklist"
+    },
+    "SampleRoundsList": "amberai:SampleRoundsList",
+    "SampleRoundsQuery": "amberai:SampleRoundsQuery",
+    "OrderItems": "amberai:OrderItems",
+    "orderId": {
+      "@id": "amberai:orderId",
+      "@type": "xsd:string"
+    },
+    "qty": {
+      "@id": "amberai:qty",
+      "@type": "xsd:decimal"
+    },
+    "supplierConfirmedAt": {
+      "@id": "amberai:supplierConfirmedAt",
+      "@type": "xsd:string"
+    },
+    "unitPriceBase": {
+      "@id": "amberai:unitPriceBase",
+      "@type": "xsd:string"
+    },
+    "htsCode": {
+      "@id": "amberai:htsCode",
+      "@type": "xsd:string"
+    },
+    "duty": {
+      "@id": "amberai:duty",
+      "@type": "xsd:string"
+    },
+    "itemType": {
+      "@id": "amberai:itemType",
+      "@type": "xsd:string"
+    },
+    "itemDescription": {
+      "@id": "amberai:itemDescription",
+      "@type": "xsd:string"
+    },
+    "memo": {
+      "@id": "amberai:memo",
+      "@type": "xsd:string"
+    },
+    "step": {
+      "@id": "amberai:step",
+      "@type": "xsd:string"
+    },
+    "OrderItemsList": "amberai:OrderItemsList",
+    "OrderItemsQuery": "amberai:OrderItemsQuery",
+    "ProductionRuns": "amberai:ProductionRuns",
+    "runNumber": {
+      "@id": "amberai:runNumber",
+      "@type": "xsd:decimal"
+    },
+    "originId": {
+      "@id": "amberai:originId"
+    },
+    "actualExFactoryDate": {
+      "@id": "amberai:actualExFactoryDate",
+      "@type": "xsd:string"
+    },
+    "retractedAt": {
+      "@id": "amberai:retractedAt",
+      "@type": "xsd:string"
+    },
+    "retractedByUserId": {
+      "@id": "amberai:retractedByUserId"
+    },
+    "retractionReason": {
+      "@id": "amberai:retractionReason",
+      "@type": "xsd:string"
+    },
+    "ProductionRunsList": "amberai:ProductionRunsList",
+    "ProductionRunsQuery": "amberai:ProductionRunsQuery",
+    "ProductionRunItems": "amberai:ProductionRunItems",
+    "productionRunId": {
+      "@id": "amberai:productionRunId",
+      "@type": "xsd:string"
+    },
+    "orderItemId": {
+      "@id": "amberai:orderItemId",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "amberai:source",
+      "@type": "xsd:string"
+    },
+    "ProductionRunItemsList": "amberai:ProductionRunItemsList",
+    "ProductionRunItemsQuery": "amberai:ProductionRunItemsQuery",
+    "ProductionRunItemRevisions": "amberai:ProductionRunItemRevisions",
+    "productionRunItemId": {
+      "@id": "amberai:productionRunItemId",
+      "@type": "xsd:string"
+    },
+    "quantityDelta": {
+      "@id": "amberai:quantityDelta",
+      "@type": "xsd:decimal"
+    },
+    "updatedByUserId": {
+      "@id": "amberai:updatedByUserId"
+    },
+    "ProductionRunItemRevisionsList": "amberai:ProductionRunItemRevisionsList",
+    "ProductionRunItemRevisionsQuery": "amberai:ProductionRunItemRevisionsQuery",
+    "OrderAmendments": "amberai:OrderAmendments",
+    "revisionId": {
+      "@id": "amberai:revisionId",
+      "@type": "xsd:string"
+    },
+    "revisionNumber": {
+      "@id": "amberai:revisionNumber",
+      "@type": "xsd:decimal"
+    },
+    "data": {
+      "@id": "amberai:data",
+      "@type": "@id"
+    },
+    "baselineUpdatedAt": {
+      "@id": "amberai:baselineUpdatedAt",
+      "@type": "xsd:string"
+    },
+    "overrideReason": {
+      "@id": "amberai:overrideReason",
+      "@type": "xsd:string"
+    },
+    "rejectionNote": {
+      "@id": "amberai:rejectionNote",
+      "@type": "xsd:string"
+    },
+    "appliedAt": {
+      "@id": "amberai:appliedAt",
+      "@type": "xsd:string"
+    },
+    "appliedByUserId": {
+      "@id": "amberai:appliedByUserId"
+    },
+    "OrderAmendmentsList": "amberai:OrderAmendmentsList",
+    "OrderAmendmentsQuery": "amberai:OrderAmendmentsQuery",
+    "PaymentAgreements": "amberai:PaymentAgreements",
+    "paymentTermId": {
+      "@id": "amberai:paymentTermId"
+    },
+    "PaymentAgreementsList": "amberai:PaymentAgreementsList",
+    "PaymentAgreementsQuery": "amberai:PaymentAgreementsQuery",
+    "PaymentMilestones": "amberai:PaymentMilestones",
+    "agreementId": {
+      "@id": "amberai:agreementId",
+      "@type": "xsd:string"
+    },
+    "label": {
+      "@id": "amberai:label",
+      "@type": "xsd:string"
+    },
+    "basis": {
+      "@id": "amberai:basis",
+      "@type": "xsd:string"
+    },
+    "percent": {
+      "@id": "amberai:percent",
+      "@type": "xsd:string"
+    },
+    "fixedAmount": {
+      "@id": "amberai:fixedAmount",
+      "@type": "xsd:string"
+    },
+    "triggerEvent": {
+      "@id": "amberai:triggerEvent",
+      "@type": "xsd:string"
+    },
+    "offsetDays": {
+      "@id": "amberai:offsetDays",
+      "@type": "xsd:decimal"
+    },
+    "manualDate": {
+      "@id": "amberai:manualDate",
+      "@type": "xsd:string"
+    },
+    "PaymentMilestonesList": "amberai:PaymentMilestonesList",
+    "PaymentMilestonesQuery": "amberai:PaymentMilestonesQuery",
+    "Payments": "amberai:Payments",
+    "sourceKind": {
+      "@id": "amberai:sourceKind",
+      "@type": "xsd:string"
+    },
+    "sourceKey": {
+      "@id": "amberai:sourceKey",
+      "@type": "xsd:string"
+    },
+    "scopeKey": {
+      "@id": "amberai:scopeKey",
+      "@type": "xsd:string"
+    },
+    "groupRef": {
+      "@id": "amberai:groupRef",
+      "@type": "xsd:string"
+    },
+    "payeeSupplierId": {
+      "@id": "amberai:payeeSupplierId"
+    },
+    "exchangeRate": {
+      "@id": "amberai:exchangeRate",
+      "@type": "xsd:string"
+    },
+    "estimatedDueDate": {
+      "@id": "amberai:estimatedDueDate",
+      "@type": "xsd:string"
+    },
+    "waitingOn": {
+      "@id": "amberai:waitingOn",
+      "@type": "xsd:string"
+    },
+    "onHold": {
+      "@id": "amberai:onHold",
+      "@type": "xsd:boolean"
+    },
+    "cancelledAt": {
+      "@id": "amberai:cancelledAt",
+      "@type": "xsd:string"
+    },
+    "cancelledReason": {
+      "@id": "amberai:cancelledReason",
+      "@type": "xsd:string"
+    },
+    "cancelledByUserId": {
+      "@id": "amberai:cancelledByUserId"
+    },
+    "brandOwnerId": {
+      "@id": "amberai:brandOwnerId"
+    },
+    "PaymentsList": "amberai:PaymentsList",
+    "PaymentsQuery": "amberai:PaymentsQuery",
+    "PaymentSettlements": "amberai:PaymentSettlements",
+    "obligationId": {
+      "@id": "amberai:obligationId",
+      "@type": "xsd:string"
+    },
+    "track": {
+      "@id": "amberai:track",
+      "@type": "xsd:string"
+    },
+    "settlementKey": {
+      "@id": "amberai:settlementKey",
+      "@type": "xsd:string"
+    },
+    "paidDate": {
+      "@id": "amberai:paidDate",
+      "@type": "xsd:string"
+    },
+    "partnerInvoiceId": {
+      "@id": "amberai:partnerInvoiceId"
+    },
+    "externalReference": {
+      "@id": "amberai:externalReference",
+      "@type": "xsd:string"
+    },
+    "assertedByActorKind": {
+      "@id": "amberai:assertedByActorKind",
+      "@type": "xsd:string"
+    },
+    "receiptDocumentId": {
+      "@id": "amberai:receiptDocumentId"
+    },
+    "PaymentSettlementsList": "amberai:PaymentSettlementsList",
+    "PaymentSettlementsQuery": "amberai:PaymentSettlementsQuery",
+    "PaymentReceipts": "amberai:PaymentReceipts",
+    "documentId": {
+      "@id": "amberai:documentId",
+      "@type": "xsd:string"
+    },
+    "paidAmount": {
+      "@id": "amberai:paidAmount",
+      "@type": "xsd:string"
+    },
+    "debitDate": {
+      "@id": "amberai:debitDate",
+      "@type": "xsd:string"
+    },
+    "valueDate": {
+      "@id": "amberai:valueDate",
+      "@type": "xsd:string"
+    },
+    "paymentReference": {
+      "@id": "amberai:paymentReference",
+      "@type": "xsd:string"
+    },
+    "beneficiaryName": {
+      "@id": "amberai:beneficiaryName",
+      "@type": "xsd:string"
+    },
+    "beneficiaryAccountTail": {
+      "@id": "amberai:beneficiaryAccountTail",
+      "@type": "xsd:string"
+    },
+    "fxRate": {
+      "@id": "amberai:fxRate",
+      "@type": "xsd:string"
+    },
+    "resolvedPayeeId": {
+      "@id": "amberai:resolvedPayeeId"
+    },
+    "PaymentReceiptsList": "amberai:PaymentReceiptsList",
+    "PaymentReceiptsQuery": "amberai:PaymentReceiptsQuery",
+    "Shipments": "amberai:Shipments",
+    "shipmentCode": {
+      "@id": "amberai:shipmentCode",
+      "@type": "xsd:string"
+    },
+    "carrier": {
+      "@id": "amberai:carrier",
+      "@type": "xsd:string"
+    },
+    "carrierSlug": {
+      "@id": "amberai:carrierSlug",
+      "@type": "xsd:string"
+    },
+    "freightForwarder": {
+      "@id": "amberai:freightForwarder",
+      "@type": "xsd:string"
+    },
+    "shipmentMode": {
+      "@id": "amberai:shipmentMode",
+      "@type": "xsd:string"
+    },
+    "containerNumbers": {
+      "@id": "amberai:containerNumbers",
+      "@container": "@list"
+    },
+    "totalPacks": {
+      "@id": "amberai:totalPacks",
+      "@type": "xsd:decimal"
+    },
+    "grossWeightValue": {
+      "@id": "amberai:grossWeightValue",
+      "@type": "xsd:string"
+    },
+    "grossWeightUom": {
+      "@id": "amberai:grossWeightUom",
+      "@type": "xsd:string"
+    },
+    "volumeValue": {
+      "@id": "amberai:volumeValue",
+      "@type": "xsd:string"
+    },
+    "volumeUom": {
+      "@id": "amberai:volumeUom",
+      "@type": "xsd:string"
+    },
+    "incoterm": {
+      "@id": "amberai:incoterm",
+      "@type": "xsd:string"
+    },
+    "incotermLocation": {
+      "@id": "amberai:incotermLocation",
+      "@type": "xsd:string"
+    },
+    "targetShipDate": {
+      "@id": "amberai:targetShipDate",
+      "@type": "xsd:string"
+    },
+    "agreedShipDate": {
+      "@id": "amberai:agreedShipDate",
+      "@type": "xsd:string"
+    },
+    "revisedShipDate": {
+      "@id": "amberai:revisedShipDate",
+      "@type": "xsd:string"
+    },
+    "actualShipDate": {
+      "@id": "amberai:actualShipDate",
+      "@type": "xsd:string"
+    },
+    "agreedPickupDate": {
+      "@id": "amberai:agreedPickupDate",
+      "@type": "xsd:string"
+    },
+    "revisedPickupDate": {
+      "@id": "amberai:revisedPickupDate",
+      "@type": "xsd:string"
+    },
+    "actualPickupDate": {
+      "@id": "amberai:actualPickupDate",
+      "@type": "xsd:string"
+    },
+    "estimatedPortArrivalDate": {
+      "@id": "amberai:estimatedPortArrivalDate",
+      "@type": "xsd:string"
+    },
+    "actualPortArrivalDate": {
+      "@id": "amberai:actualPortArrivalDate",
+      "@type": "xsd:string"
+    },
+    "targetArrivalDate": {
+      "@id": "amberai:targetArrivalDate",
+      "@type": "xsd:string"
+    },
+    "estimatedArrivalDate": {
+      "@id": "amberai:estimatedArrivalDate",
+      "@type": "xsd:string"
+    },
+    "customsClearedDate": {
+      "@id": "amberai:customsClearedDate",
+      "@type": "xsd:string"
+    },
+    "customsClearedDateSource": {
+      "@id": "amberai:customsClearedDateSource",
+      "@type": "xsd:string"
+    },
+    "actualArrivalDate": {
+      "@id": "amberai:actualArrivalDate",
+      "@type": "xsd:string"
+    },
+    "actualArrivalDateSource": {
+      "@id": "amberai:actualArrivalDateSource",
+      "@type": "xsd:string"
+    },
+    "cargoReadyDate": {
+      "@id": "amberai:cargoReadyDate",
+      "@type": "xsd:string"
+    },
+    "bookingReceivedDate": {
+      "@id": "amberai:bookingReceivedDate",
+      "@type": "xsd:string"
+    },
+    "houseBillNumber": {
+      "@id": "amberai:houseBillNumber",
+      "@type": "xsd:string"
+    },
+    "masterBillNumber": {
+      "@id": "amberai:masterBillNumber",
+      "@type": "xsd:string"
+    },
+    "estimatedCost": {
+      "@id": "amberai:estimatedCost",
+      "@type": "xsd:string"
+    },
+    "finalCost": {
+      "@id": "amberai:finalCost",
+      "@type": "xsd:string"
+    },
+    "customsCost": {
+      "@id": "amberai:customsCost",
+      "@type": "xsd:string"
+    },
+    "costCurrency": {
+      "@id": "amberai:costCurrency",
+      "@type": "xsd:string"
+    },
+    "conveyanceReference": {
+      "@id": "amberai:conveyanceReference",
+      "@type": "xsd:string"
+    },
+    "loadType": {
+      "@id": "amberai:loadType",
+      "@type": "xsd:string"
+    },
+    "loadUtilization": {
+      "@id": "amberai:loadUtilization",
+      "@type": "xsd:string"
+    },
+    "dischargeLocationId": {
+      "@id": "amberai:dischargeLocationId"
+    },
+    "destinationId": {
+      "@id": "amberai:destinationId"
+    },
+    "pickupLocationId": {
+      "@id": "amberai:pickupLocationId"
+    },
+    "externalShipmentId": {
+      "@id": "amberai:externalShipmentId",
+      "@type": "xsd:string"
+    },
+    "externalStatus": {
+      "@id": "amberai:externalStatus",
+      "@type": "xsd:string"
+    },
+    "externalBookingReference": {
+      "@id": "amberai:externalBookingReference",
+      "@type": "xsd:string"
+    },
+    "lastEventOccurredAt": {
+      "@id": "amberai:lastEventOccurredAt",
+      "@type": "xsd:string"
+    },
+    "ShipmentsList": "amberai:ShipmentsList",
+    "ShipmentsQuery": "amberai:ShipmentsQuery",
+    "containerNumber": {
+      "@id": "amberai:containerNumber",
+      "@type": "xsd:string"
+    },
+    "ShipmentItems": "amberai:ShipmentItems",
+    "shipmentId": {
+      "@id": "amberai:shipmentId",
+      "@type": "xsd:string"
+    },
+    "sku": {
+      "@id": "amberai:sku",
+      "@type": "xsd:string"
+    },
+    "purchaseOrderNumber": {
+      "@id": "amberai:purchaseOrderNumber",
+      "@type": "xsd:string"
+    },
+    "externalShipmentItemId": {
+      "@id": "amberai:externalShipmentItemId",
+      "@type": "xsd:string"
+    },
+    "lineNumber": {
+      "@id": "amberai:lineNumber",
+      "@type": "xsd:decimal"
+    },
+    "lineageOutcome": {
+      "@id": "amberai:lineageOutcome",
+      "@type": "xsd:string"
+    },
+    "reconciledAt": {
+      "@id": "amberai:reconciledAt",
+      "@type": "xsd:string"
+    },
+    "ShipmentItemsList": "amberai:ShipmentItemsList",
+    "ShipmentItemsQuery": "amberai:ShipmentItemsQuery",
+    "ShipmentCartons": "amberai:ShipmentCartons",
+    "cartonSizeId": {
+      "@id": "amberai:cartonSizeId"
+    },
+    "cartonNumber": {
+      "@id": "amberai:cartonNumber",
+      "@type": "xsd:string"
+    },
+    "lengthCm": {
+      "@id": "amberai:lengthCm",
+      "@type": "xsd:string"
+    },
+    "widthCm": {
+      "@id": "amberai:widthCm",
+      "@type": "xsd:string"
+    },
+    "heightCm": {
+      "@id": "amberai:heightCm",
+      "@type": "xsd:string"
+    },
+    "grossWeightKg": {
+      "@id": "amberai:grossWeightKg",
+      "@type": "xsd:string"
+    },
+    "netWeightKg": {
+      "@id": "amberai:netWeightKg",
+      "@type": "xsd:string"
+    },
+    "dimensionUnit": {
+      "@id": "amberai:dimensionUnit",
+      "@type": "xsd:string"
+    },
+    "weightUnit": {
+      "@id": "amberai:weightUnit",
+      "@type": "xsd:string"
+    },
+    "isMixedCarton": {
+      "@id": "amberai:isMixedCarton",
+      "@type": "xsd:boolean"
+    },
+    "packingListId": {
+      "@id": "amberai:packingListId"
+    },
+    "ShipmentCartonsList": "amberai:ShipmentCartonsList",
+    "ShipmentCartonsQuery": "amberai:ShipmentCartonsQuery",
+    "ShipmentCartonItems": "amberai:ShipmentCartonItems",
+    "shipmentCartonId": {
+      "@id": "amberai:shipmentCartonId",
+      "@type": "xsd:string"
+    },
+    "totalUnits": {
+      "@id": "amberai:totalUnits",
+      "@type": "xsd:decimal"
+    },
+    "ShipmentCartonItemsList": "amberai:ShipmentCartonItemsList",
+    "ShipmentCartonItemsQuery": "amberai:ShipmentCartonItemsQuery",
+    "ShipmentCharges": "amberai:ShipmentCharges",
+    "invoiceNumber": {
+      "@id": "amberai:invoiceNumber",
+      "@type": "xsd:string"
+    },
+    "invoiceDate": {
+      "@id": "amberai:invoiceDate",
+      "@type": "xsd:string"
+    },
+    "chargeType": {
+      "@id": "amberai:chargeType",
+      "@type": "xsd:string"
+    },
+    "ShipmentChargesList": "amberai:ShipmentChargesList",
+    "ShipmentChargesQuery": "amberai:ShipmentChargesQuery",
+    "Legs": "amberai:Legs",
+    "sourceShipmentId": {
+      "@id": "amberai:sourceShipmentId"
+    },
+    "LegsList": "amberai:LegsList",
+    "LegsQuery": "amberai:LegsQuery",
+    "LegItems": "amberai:LegItems",
+    "legId": {
+      "@id": "amberai:legId",
+      "@type": "xsd:string"
+    },
+    "LegItemsList": "amberai:LegItemsList",
+    "LegItemsQuery": "amberai:LegItemsQuery",
+    "Inventory": "amberai:Inventory",
+    "addressId": {
+      "@id": "amberai:addressId",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Amberai API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Amberai's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-05) from openapi/amberai-openapi.json.",
+  "dcterms:created": "2026-10-05",
+  "dcterms:source": [
+    "openapi/amberai-openapi.json"
+  ]
+}

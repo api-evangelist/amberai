@@ -1,0 +1,779 @@
+openapi: 3.2.0
+info:
+  title: Amber Public Partners API
+  version: 1.3.0
+  description: Read your brand's catalog, sourcing, orders, shipments, finance, and documents. All business endpoints are read-only and require an API key. Products are Parent Products; Product Options and SKUs are separate resources. Use filters to find records, follow their IDs to related data, and paginate to retrieve every result. See the integration tutorials for complete examples and data conventions for amounts, IDs, and timestamps.
+servers:
+- url: https://app.amber.ai/api/public/v1
+tags:
+- name: Partners
+paths:
+  /brands/{brand}/partners:
+    get:
+      tags:
+      - Partners
+      summary: List Partners
+      operationId: listPartners
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: cursor
+        in: query
+        required: false
+        description: Opaque nextCursor from the same collection and filters. Omit on the first request.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 25
+      - name: slug
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: name
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: shortName
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: countryCode
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: midCode
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: businessRegistrationNumber
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: taxId
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      - name: partnerStatus
+        in: query
+        required: false
+        description: Exact, case-sensitive match. Spaces and punctuation are literal.
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Exact, case-sensitive match. Spaces and punctuation are literal.
+      responses:
+        '200':
+          description: A page of matching records. totalItems counts all matches across pages. When nextCursor is null, you have reached the last page.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PartnersList'
+          headers:
+            Link:
+              description: Origin-relative URL for the next page, with rel="next". Resolve against this response URL. Preserves filters and page size; omitted when nextCursor is null.
+              schema:
+                type: string
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /brands/{brand}/partners/{id}:
+    get:
+      tags:
+      - Partners
+      summary: Get Partners
+      operationId: getPartners
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        description: Brand slug authorized by this API key.
+        schema:
+          type: string
+          example: acme
+      - name: id
+        in: path
+        required: true
+        description: Stable resource identifier.
+        schema:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      responses:
+        '200':
+          description: The requested record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Partners'
+        '400':
+          description: Invalid parameter, unsupported include, or cursor used with different filters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Missing, invalid, expired, or out-of-scope API key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: The record was not found or is not available to your brand.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '429':
+          description: Rate limit exceeded. Retry after the indicated delay.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              schema:
+                type: integer
+                minimum: 0
+        '500':
+          description: Unexpected server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Partners:
+      type: object
+      properties:
+        id:
+          type: string
+        slug:
+          type: string
+        name:
+          type: string
+        shortName:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        leadTimeDays:
+          type:
+          - number
+          - 'null'
+        moq:
+          type:
+          - number
+          - 'null'
+        moqByColor:
+          type:
+          - number
+          - 'null'
+        moqLastConfirmedAt:
+          type:
+          - string
+          - 'null'
+        midCode:
+          type:
+          - string
+          - 'null'
+        website:
+          type:
+          - string
+          - 'null'
+        businessRegistrationNumber:
+          type:
+          - string
+          - 'null'
+        taxId:
+          type:
+          - string
+          - 'null'
+        minimumOrderValue:
+          type:
+          - string
+          - 'null'
+        certifications:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+        specializations:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+        productionCapacity:
+          type:
+          - number
+          - 'null'
+        productionCapacityUnit:
+          type:
+          - string
+          - 'null'
+        factoryAuditDate:
+          type:
+          - string
+          - 'null'
+        factoryAuditStatus:
+          type:
+          - string
+          - 'null'
+        partnerStatus:
+          type: string
+        lastContactDate:
+          type:
+          - string
+          - 'null'
+        nextContactDate:
+          type:
+          - string
+          - 'null'
+        notes:
+          anyOf:
+          - $ref: '#/components/schemas/Partners/$defs/__schema0'
+          - type: 'null'
+        equipmentTechnology:
+          type:
+          - string
+          - 'null'
+        packagingCapabilities:
+          type:
+          - string
+          - 'null'
+        verified:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        relationship:
+          type: object
+          properties:
+            id:
+              type: string
+            status:
+              type: string
+            brandNotes:
+              anyOf:
+              - $ref: '#/components/schemas/Partners/$defs/__schema1'
+              - type: 'null'
+            defaultIncotermCode:
+              type:
+              - string
+              - 'null'
+            defaultCurrencyCode:
+              type:
+              - string
+              - 'null'
+            defaultPaymentTermId:
+              type:
+              - string
+              - 'null'
+            qualityRating:
+              type:
+              - string
+              - 'null'
+            ontimeRating:
+              type:
+              - string
+              - 'null'
+            responsivenessRating:
+              type:
+              - string
+              - 'null'
+            sustainabilityScore:
+              type:
+              - string
+              - 'null'
+            brandOwnerUserId:
+              type:
+              - string
+              - 'null'
+            customFields:
+              anyOf:
+              - $ref: '#/components/schemas/Partners/$defs/__schema2'
+              - type: 'null'
+          required:
+          - id
+          - status
+          - brandNotes
+          - defaultIncotermCode
+          - defaultCurrencyCode
+          - defaultPaymentTermId
+          - qualityRating
+          - ontimeRating
+          - responsivenessRating
+          - sustainabilityScore
+          - brandOwnerUserId
+          - customFields
+          additionalProperties: false
+      required:
+      - id
+      - slug
+      - name
+      - shortName
+      - countryCode
+      - defaultCurrencyCode
+      - leadTimeDays
+      - moq
+      - moqByColor
+      - moqLastConfirmedAt
+      - midCode
+      - website
+      - businessRegistrationNumber
+      - taxId
+      - minimumOrderValue
+      - certifications
+      - specializations
+      - productionCapacity
+      - productionCapacityUnit
+      - factoryAuditDate
+      - factoryAuditStatus
+      - partnerStatus
+      - lastContactDate
+      - nextContactDate
+      - notes
+      - equipmentTechnology
+      - packagingCapabilities
+      - verified
+      - createdAt
+      - updatedAt
+      - relationship
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Partners/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Partners/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Partners/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Partners/$defs/__schema1'
+        __schema2:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Partners/$defs/__schema2'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Partners/$defs/__schema2'
+    PartnersList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              slug:
+                type: string
+              name:
+                type: string
+              shortName:
+                type:
+                - string
+                - 'null'
+              countryCode:
+                type:
+                - string
+                - 'null'
+              defaultCurrencyCode:
+                type:
+                - string
+                - 'null'
+              leadTimeDays:
+                type:
+                - number
+                - 'null'
+              moq:
+                type:
+                - number
+                - 'null'
+              moqByColor:
+                type:
+                - number
+                - 'null'
+              moqLastConfirmedAt:
+                type:
+                - string
+                - 'null'
+              midCode:
+                type:
+                - string
+                - 'null'
+              website:
+                type:
+                - string
+                - 'null'
+              businessRegistrationNumber:
+                type:
+                - string
+                - 'null'
+              taxId:
+                type:
+                - string
+                - 'null'
+              minimumOrderValue:
+                type:
+                - string
+                - 'null'
+              certifications:
+                anyOf:
+                - type: array
+                  items:
+                    type: string
+                - type: 'null'
+              specializations:
+                anyOf:
+                - type: array
+                  items:
+                    type: string
+                - type: 'null'
+              productionCapacity:
+                type:
+                - number
+                - 'null'
+              productionCapacityUnit:
+                type:
+                - string
+                - 'null'
+              factoryAuditDate:
+                type:
+                - string
+                - 'null'
+              factoryAuditStatus:
+                type:
+                - string
+                - 'null'
+              partnerStatus:
+                type: string
+              lastContactDate:
+                type:
+                - string
+                - 'null'
+              nextContactDate:
+                type:
+                - string
+                - 'null'
+              notes:
+                anyOf:
+                - $ref: '#/components/schemas/PartnersList/$defs/__schema0'
+                - type: 'null'
+              equipmentTechnology:
+                type:
+                - string
+                - 'null'
+              packagingCapabilities:
+                type:
+                - string
+                - 'null'
+              verified:
+                type: boolean
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+              relationship:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    type: string
+                  brandNotes:
+                    anyOf:
+                    - $ref: '#/components/schemas/PartnersList/$defs/__schema1'
+                    - type: 'null'
+                  defaultIncotermCode:
+                    type:
+                    - string
+                    - 'null'
+                  defaultCurrencyCode:
+                    type:
+                    - string
+                    - 'null'
+                  defaultPaymentTermId:
+                    type:
+                    - string
+                    - 'null'
+                  qualityRating:
+                    type:
+                    - string
+                    - 'null'
+                  ontimeRating:
+                    type:
+                    - string
+                    - 'null'
+                  responsivenessRating:
+                    type:
+                    - string
+                    - 'null'
+                  sustainabilityScore:
+                    type:
+                    - string
+                    - 'null'
+                  brandOwnerUserId:
+                    type:
+                    - string
+                    - 'null'
+                  customFields:
+                    anyOf:
+                    - $ref: '#/components/schemas/PartnersList/$defs/__schema2'
+                    - type: 'null'
+                required:
+                - id
+                - status
+                - brandNotes
+                - defaultIncotermCode
+                - defaultCurrencyCode
+                - defaultPaymentTermId
+                - qualityRating
+                - ontimeRating
+                - responsivenessRating
+                - sustainabilityScore
+                - brandOwnerUserId
+                - customFields
+                additionalProperties: false
+            required:
+            - id
+            - slug
+            - name
+            - shortName
+            - countryCode
+            - defaultCurrencyCode
+            - leadTimeDays
+            - moq
+            - moqByColor
+            - moqLastConfirmedAt
+            - midCode
+            - website
+            - businessRegistrationNumber
+            - taxId
+            - minimumOrderValue
+            - certifications
+            - specializations
+            - productionCapacity
+            - productionCapacityUnit
+            - factoryAuditDate
+            - factoryAuditStatus
+            - partnerStatus
+            - lastContactDate
+            - nextContactDate
+            - notes
+            - equipmentTechnology
+            - packagingCapabilities
+            - verified
+            - createdAt
+            - updatedAt
+            - relationship
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/PartnersList/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/PartnersList/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/PartnersList/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/PartnersList/$defs/__schema1'
+        __schema2:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/PartnersList/$defs/__schema2'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/PartnersList/$defs/__schema2'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+  securitySchemes:
+    ApiKeyAuth:
+      type: http
+      scheme: bearer
+      description: A brand-scoped or global amb_sk_... API key.

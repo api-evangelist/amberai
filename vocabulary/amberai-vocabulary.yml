@@ -1,0 +1,424 @@
+generated: '2026-10-05'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/amberai-openapi.json
+vocabulary:
+  name: Amberai Domain Vocabulary
+  description: 'Terms declared by Amberai''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-05'
+  terms:
+  - term: Error
+    definition: 'Object declared by the contract with fields: error, errorCode, details.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/Error
+  - term: Brand
+    definition: 'Object declared by the contract with fields: id, slug, name.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/Brand
+  - term: ProductList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductList
+  - term: ProductDetail
+    definition: 'Object declared by the contract with fields: launchWindow, estimatedVolume, globalMoq, htsCodeOverride, customFields, productOwnerUserId,
+      currentProductVersionId, optionGroupCurveId, lastActivityAt, included, id, code. (9 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductDetail
+  - term: OrderList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/OrderList
+  - term: OrderDetail
+    definition: 'Object declared by the contract with fields: details, id, orderNumber, status, supplier, lineItems, totalAmount, currency, createdAt,
+      updatedAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/OrderDetail
+  - term: SupplierList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SupplierList
+  - term: SupplierDetail
+    definition: 'Object declared by the contract with fields: id, name, shortName, status, country, address, contacts, createdAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SupplierDetail
+  - term: QuoteList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/QuoteList
+  - term: QuoteDetail
+    definition: 'Object declared by the contract with fields: details, id, rfqNumber, quoteNumber, status, supplier, product, targetPrice, currency,
+      quantity, notes, createdAt. (1 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/QuoteDetail
+  - term: DocumentContent
+    definition: 'Object declared by the contract with fields: url, expiresAt, extent.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/DocumentContent
+  - term: ProductOptions
+    definition: 'Object declared by the contract with fields: id, productId, name, vendorFacingProductName, sequence, status, supplierId, collectionId,
+      launchWindow, channel, measurementTableId, construction. (7 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptions
+  - term: ProductOptionsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionsList
+  - term: ProductOptionsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, vendorFacingProductName, channel, launchWindow, name, status, productId,
+      supplierId, collectionId, measurementTableId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionsQuery
+  - term: Skus
+    definition: 'Object declared by the contract with fields: id, productId, code, status, upc, retailPrice, wholesalePrice, colorId, htsCodeOverride,
+      productOptionId, targetFobOverride, launchWindowOverride. (5 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/Skus
+  - term: SkusList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SkusList
+  - term: SkusQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, code, upc, status, productId, productOptionId, colorId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SkusQuery
+  - term: ProductVersions
+    definition: 'Object declared by the contract with fields: id, productId, versionNumber, versionName, status, isActive, weightValue, weightUomId,
+      targetFob, targetFobCurrency, priceCurrency, moq. (15 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductVersions
+  - term: ProductVersionsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductVersionsList
+  - term: ProductVersionsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, versionNumber, versionName, status, isActive, baseVersionId, productId,
+      partnerId, protoId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductVersionsQuery
+  - term: Boms
+    definition: 'Object declared by the contract with fields: id, productVersionId, name, isDefault, constructionAnnotations, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/Boms
+  - term: BomsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomsList
+  - term: BomsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, name, isDefault, productVersionId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomsQuery
+  - term: BomComponents
+    definition: 'Object declared by the contract with fields: id, bomId, componentId, componentVariantId, bomSectionId, name, composition, quantity,
+      unitPrice, gsm, supplier, notes. (4 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomComponents
+  - term: BomComponentsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomComponentsList
+  - term: BomComponentsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, name, bomSectionId, showOnPo, bomId, componentId, componentVariantId,
+      productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomComponentsQuery
+  - term: MeasurementTables
+    definition: 'Object declared by the contract with fields: id, productVersionId, name, sizeSpecs, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/MeasurementTables
+  - term: MeasurementTablesList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/MeasurementTablesList
+  - term: MeasurementTablesQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, name, productVersionId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/MeasurementTablesQuery
+  - term: ProductRelations
+    definition: 'Object declared by the contract with fields: id, productId, relatedProductId, relationType, createdByUserId, createdAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductRelations
+  - term: ProductRelationsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductRelationsList
+  - term: ProductRelationsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, relatedProductId, relationType, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductRelationsQuery
+  - term: ProductOptionValues
+    definition: 'Object declared by the contract with fields: productOptionId, optionValueId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionValues
+  - term: ProductOptionValuesList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionValuesList
+  - term: ProductOptionValuesQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productOptionId, optionValueId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionValuesQuery
+  - term: ProductOptionDimensionValues
+    definition: 'Object declared by the contract with fields: productOptionId, dimensionValueId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionDimensionValues
+  - term: ProductOptionDimensionValuesList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionDimensionValuesList
+  - term: ProductOptionDimensionValuesQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productOptionId, dimensionValueId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionDimensionValuesQuery
+  - term: ProductOptionPrices
+    definition: 'Object declared by the contract with fields: productOptionId, kind, currency, amount.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionPrices
+  - term: ProductOptionPricesList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionPricesList
+  - term: ProductOptionPricesQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, kind, currency, productOptionId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionPricesQuery
+  - term: ProductOptionCollections
+    definition: 'Object declared by the contract with fields: productOptionId, collectionId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionCollections
+  - term: ProductOptionCollectionsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionCollectionsList
+  - term: ProductOptionCollectionsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productOptionId, collectionId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductOptionCollectionsQuery
+  - term: BomSkus
+    definition: 'Object declared by the contract with fields: bomId, skuId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomSkus
+  - term: BomSkusList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomSkusList
+  - term: BomSkusQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, bomId, skuId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/BomSkusQuery
+  - term: MeasurementTableSkus
+    definition: 'Object declared by the contract with fields: measurementTableId, skuId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/MeasurementTableSkus
+  - term: MeasurementTableSkusList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/MeasurementTableSkusList
+  - term: MeasurementTableSkusQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, measurementTableId, skuId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/MeasurementTableSkusQuery
+  - term: SkuDimensionValues
+    definition: 'Object declared by the contract with fields: skuId, dimensionValueId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SkuDimensionValues
+  - term: SkuDimensionValuesList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SkuDimensionValuesList
+  - term: SkuDimensionValuesQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, skuId, dimensionValueId, productId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SkuDimensionValuesQuery
+  - term: ProductCollections
+    definition: 'Object declared by the contract with fields: id, productId, collectionId, quantity, unitPrice, notes, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductCollections
+  - term: ProductCollectionsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductCollectionsList
+  - term: ProductCollectionsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productId, collectionId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductCollectionsQuery
+  - term: ProductTags
+    definition: 'Object declared by the contract with fields: productId, tagId, createdAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductTags
+  - term: ProductTagsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductTagsList
+  - term: ProductTagsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productId, tagId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductTagsQuery
+  - term: ProductLaunchWindows
+    definition: 'Object declared by the contract with fields: productId, launchWindowId, createdAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductLaunchWindows
+  - term: ProductLaunchWindowsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductLaunchWindowsList
+  - term: ProductLaunchWindowsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productId, launchWindowId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductLaunchWindowsQuery
+  - term: Samples
+    definition: 'Object declared by the contract with fields: id, productId, supplierId, code, status, startDate, endDate, targetCost, protoOwnerUserId,
+      customFields, approvedAt, approvedBy. (2 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/Samples
+  - term: SamplesList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SamplesList
+  - term: SamplesQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, code, status, productId, supplierId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SamplesQuery
+  - term: SampleRounds
+    definition: 'Object declared by the contract with fields: id, protoId, status, trackingNumber, comment, sampleStage, sampleMeasurements, annotations,
+      colors, sizes, quantities, referenceBomId. (12 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SampleRounds
+  - term: SampleRoundsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SampleRoundsList
+  - term: SampleRoundsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, trackingNumber, status, sampleStage, referenceBomId, protoId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/SampleRoundsQuery
+  - term: OrderItems
+    definition: 'Object declared by the contract with fields: id, orderId, skuId, productVersionId, qty, supplierConfirmedAt, unitPrice, unitPriceBase,
+      htsCode, duty, itemType, itemDescription. (5 more)'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/OrderItems
+  - term: OrderItemsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/OrderItemsList
+  - term: OrderItemsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, itemType, orderId, skuId, productVersionId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/OrderItemsQuery
+  - term: ProductionRuns
+    definition: 'Object declared by the contract with fields: id, orderId, runNumber, originId, actualExFactoryDate, retractedAt, retractedByUserId,
+      retractionReason, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRuns
+  - term: ProductionRunsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunsList
+  - term: ProductionRunsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, runNumber, originId, orderId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunsQuery
+  - term: ProductionRunItems
+    definition: 'Object declared by the contract with fields: id, productionRunId, orderItemId, quantity, source, createdAt, updatedAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunItems
+  - term: ProductionRunItemsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunItemsList
+  - term: ProductionRunItemsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productionRunId, orderItemId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunItemsQuery
+  - term: ProductionRunItemRevisions
+    definition: 'Object declared by the contract with fields: id, productionRunItemId, quantityDelta, source, updatedByUserId, createdAt.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunItemRevisions
+  - term: ProductionRunItemRevisionsList
+    definition: 'Object declared by the contract with fields: items, nextCursor, totalItems.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunItemRevisionsList
+  - term: ProductionRunItemRevisionsQuery
+    definition: 'Object declared by the contract with fields: cursor, limit, productionRunItemId.'
+    tags:
+    - Object
+    source: openapi/amberai-openapi.json#/components/schemas/ProductionRunItemRevisionsQuery

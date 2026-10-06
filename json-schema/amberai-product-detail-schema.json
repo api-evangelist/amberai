@@ -1,0 +1,3568 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/amberai/main/json-schema/amberai-product-detail-schema.json",
+  "title": "ProductDetail",
+  "x-generated": "2026-10-05",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/amberai-openapi.json#/components/schemas/ProductDetail",
+  "type": "object",
+  "properties": {
+    "launchWindow": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "estimatedVolume": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "globalMoq": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "htsCodeOverride": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customFields": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/__schema0"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "productOwnerUserId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currentProductVersionId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "optionGroupCurveId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lastActivityAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "included": {
+      "type": "object",
+      "properties": {
+        "documents": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "subjects": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "subjectKind": {
+                          "type": "string"
+                        },
+                        "subjectKey": {
+                          "type": "string"
+                        },
+                        "establishedAs": {
+                          "type": "string"
+                        },
+                        "subjectLabel": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "subjectKind",
+                        "subjectKey",
+                        "establishedAs",
+                        "subjectLabel"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "ownerType": {
+                    "type": "string"
+                  },
+                  "ownerId": {
+                    "type": "string"
+                  },
+                  "visibility": {
+                    "type": "string"
+                  },
+                  "documentTypeId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "dataValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "fileName": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "mimeType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "fileSizeBytes": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "channel": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "supersededByDocumentId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "supersededAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "supersededReason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "senderRole": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "issuerName": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "extent": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema1"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "deletedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "subjectKind": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "subjectKey": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "subjects",
+                  "id",
+                  "ownerType",
+                  "ownerId",
+                  "visibility",
+                  "documentTypeId",
+                  "dataValue",
+                  "fileName",
+                  "mimeType",
+                  "fileSizeBytes",
+                  "channel",
+                  "source",
+                  "supersededByDocumentId",
+                  "supersededAt",
+                  "supersededReason",
+                  "senderRole",
+                  "issuerName",
+                  "extent",
+                  "createdAt",
+                  "updatedAt",
+                  "deletedAt",
+                  "subjectKind",
+                  "subjectKey"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "images": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "filename": {
+                    "type": "string"
+                  },
+                  "fileSize": {
+                    "type": "number"
+                  },
+                  "mimeType": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  },
+                  "entityId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "entityType": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "title": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "idx": {
+                    "type": "number"
+                  },
+                  "isThumbnail": {
+                    "type": "boolean"
+                  },
+                  "isInternal": {
+                    "type": "boolean"
+                  },
+                  "uploadedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "filename",
+                  "fileSize",
+                  "mimeType",
+                  "category",
+                  "entityId",
+                  "entityType",
+                  "description",
+                  "title",
+                  "idx",
+                  "isThumbnail",
+                  "isInternal",
+                  "uploadedAt",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "bomSections": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "sequence": {
+                    "type": "number"
+                  },
+                  "relevantFieldKeys": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema2"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "deletedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "code",
+                  "name",
+                  "sequence",
+                  "relevantFieldKeys",
+                  "deletedAt",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "launchWindowDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "collectionId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "uiColor": {
+                    "type": "string"
+                  },
+                  "launchStartDate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "launchEndDate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "deletedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "collectionId",
+                  "name",
+                  "code",
+                  "uiColor",
+                  "launchStartDate",
+                  "launchEndDate",
+                  "deletedAt",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "tagDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "uiColor": {
+                    "type": "string"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "code",
+                  "uiColor",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "collectionDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "uiColor": {
+                    "type": "string"
+                  },
+                  "customFields": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema3"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "code",
+                  "uiColor",
+                  "customFields",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "dimensionValueDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "dimensionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "value": {
+                    "type": "string"
+                  },
+                  "customerFacingLabel": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "sequence": {
+                    "type": "number"
+                  },
+                  "skuCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "dimensionId",
+                  "value",
+                  "customerFacingLabel",
+                  "sequence",
+                  "skuCode",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "dimensionDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "skuSequence": {
+                    "type": "number"
+                  },
+                  "listSequence": {
+                    "type": "number"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "code",
+                  "skuSequence",
+                  "listSequence",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "optionValueDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "optionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "sequence": {
+                    "type": "number"
+                  },
+                  "hexCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "swatchVersion": {
+                    "type": "number"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "optionId",
+                  "name",
+                  "code",
+                  "status",
+                  "sequence",
+                  "hexCode",
+                  "swatchVersion",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "optionDefinitions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "key": {
+                    "type": "string"
+                  },
+                  "sequence": {
+                    "type": "number"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "name",
+                  "key",
+                  "sequence",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "categories": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "parentId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultHtsCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "defaultSizeSystemId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "defaultTargetSize": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "nextValue": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "updatedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "parentId",
+                  "name",
+                  "code",
+                  "defaultHtsCode",
+                  "defaultSizeSystemId",
+                  "defaultTargetSize",
+                  "nextValue",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "colors": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "hexCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "swatchVersion": {
+                    "type": "number"
+                  },
+                  "customFields": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema4"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "updatedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "status",
+                  "code",
+                  "name",
+                  "hexCode",
+                  "swatchVersion",
+                  "customFields",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "materialVariants": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "componentId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "supplierMaterialVariantName": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "supplierMaterialVariantCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "negotiatedPrice": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "negotiatedPriceCurrency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "imageVersion": {
+                    "type": "number"
+                  },
+                  "hexCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "colorId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "customFields": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema5"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "deletedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "componentId",
+                  "supplierMaterialVariantName",
+                  "supplierMaterialVariantCode",
+                  "negotiatedPrice",
+                  "negotiatedPriceCurrency",
+                  "imageVersion",
+                  "hexCode",
+                  "colorId",
+                  "customFields",
+                  "status",
+                  "deletedAt",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "materials": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "bomSectionId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "code": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "composition": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "gsm": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "supplier": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "supplierProductCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "negotiatedPrice": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "negotiatedPriceCurrency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "properties": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema6"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "customFields": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema7"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "imageVersion": {
+                    "type": "number"
+                  },
+                  "deletedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "bomSectionId",
+                  "name",
+                  "code",
+                  "composition",
+                  "description",
+                  "gsm",
+                  "supplier",
+                  "supplierProductCode",
+                  "status",
+                  "negotiatedPrice",
+                  "negotiatedPriceCurrency",
+                  "properties",
+                  "customFields",
+                  "imageVersion",
+                  "deletedAt",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "productOptions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                    "description": "Parent Product ID from /products."
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "vendorFacingProductName": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "sequence": {
+                    "type": "number"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "supplierId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "collectionId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "launchWindow": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "channel": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "measurementTableId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "construction": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "hsCode": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "hsConfirmed": {
+                    "type": "boolean"
+                  },
+                  "hsWhy": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "customFields": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema8"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  },
+                  "deletedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "productId",
+                  "name",
+                  "vendorFacingProductName",
+                  "sequence",
+                  "status",
+                  "supplierId",
+                  "collectionId",
+                  "launchWindow",
+                  "channel",
+                  "measurementTableId",
+                  "construction",
+                  "hsCode",
+                  "hsConfirmed",
+                  "hsWhy",
+                  "customFields",
+                  "createdAt",
+                  "updatedAt",
+                  "deletedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "skus": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                    "description": "Parent Product ID from /products."
+                  },
+                  "code": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "upc": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "retailPrice": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "wholesalePrice": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "colorId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "htsCodeOverride": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "productOptionId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ],
+                    "description": "Product Option ID from /product-options."
+                  },
+                  "targetFobOverride": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "launchWindowOverride": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "collectionIdsOverride": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema9"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "weightValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "weightUomId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "productId",
+                  "code",
+                  "status",
+                  "upc",
+                  "retailPrice",
+                  "wholesalePrice",
+                  "colorId",
+                  "htsCodeOverride",
+                  "productOptionId",
+                  "targetFobOverride",
+                  "launchWindowOverride",
+                  "collectionIdsOverride",
+                  "weightValue",
+                  "weightUomId",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "versions": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "versionNumber": {
+                    "type": "number"
+                  },
+                  "versionName": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  },
+                  "weightValue": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "weightUomId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "targetFob": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "targetFobCurrency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "priceCurrency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "moq": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "moqByColor": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "moqLastConfirmedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "technicalSpecs": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema10"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "packagingSpecs": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema11"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "labelingSpecs": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema12"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "sizeSpecs": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema13"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "baseVersionId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "protoId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "partnerId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "notes": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "changesSummary": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "approvedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "approvedBy": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "productId",
+                  "versionNumber",
+                  "versionName",
+                  "status",
+                  "isActive",
+                  "weightValue",
+                  "weightUomId",
+                  "targetFob",
+                  "targetFobCurrency",
+                  "priceCurrency",
+                  "moq",
+                  "moqByColor",
+                  "moqLastConfirmedAt",
+                  "technicalSpecs",
+                  "packagingSpecs",
+                  "labelingSpecs",
+                  "sizeSpecs",
+                  "baseVersionId",
+                  "protoId",
+                  "partnerId",
+                  "notes",
+                  "changesSummary",
+                  "approvedAt",
+                  "approvedBy",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "boms": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productVersionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "isDefault": {
+                    "type": "boolean"
+                  },
+                  "constructionAnnotations": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema14"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "productVersionId",
+                  "name",
+                  "isDefault",
+                  "constructionAnnotations",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "bomComponents": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "bomId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "componentId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "componentVariantId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "bomSectionId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "name": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "composition": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "quantity": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "unitPrice": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "gsm": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "supplier": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "notes": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "properties": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema15"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "showOnPo": {
+                    "type": "boolean"
+                  },
+                  "createdAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "updatedAt": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "id",
+                  "bomId",
+                  "componentId",
+                  "componentVariantId",
+                  "bomSectionId",
+                  "name",
+                  "composition",
+                  "quantity",
+                  "unitPrice",
+                  "gsm",
+                  "supplier",
+                  "notes",
+                  "properties",
+                  "showOnPo",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "measurementTables": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productVersionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "sizeSpecs": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/$defs/__schema16"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "productVersionId",
+                  "name",
+                  "sizeSpecs",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "optionValues": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productOptionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "optionValueId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "required": [
+                  "productOptionId",
+                  "optionValueId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "dimensionValues": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productOptionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "dimensionValueId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "required": [
+                  "productOptionId",
+                  "dimensionValueId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "prices": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productOptionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "kind": {
+                    "type": "string"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "amount": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "productOptionId",
+                  "kind",
+                  "currency",
+                  "amount"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "optionCollections": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productOptionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "collectionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "required": [
+                  "productOptionId",
+                  "collectionId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "bomSkus": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "bomId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "skuId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "required": [
+                  "bomId",
+                  "skuId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "measurementTableSkus": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "measurementTableId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "skuId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "required": [
+                  "measurementTableId",
+                  "skuId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "skuDimensionValues": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "skuId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "dimensionValueId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  }
+                },
+                "required": [
+                  "skuId",
+                  "dimensionValueId"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "collections": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "collectionId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "quantity": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "unitPrice": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "notes": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  },
+                  "updatedAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "productId",
+                  "collectionId",
+                  "quantity",
+                  "unitPrice",
+                  "notes",
+                  "createdAt",
+                  "updatedAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "tags": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "tagId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "productId",
+                  "tagId",
+                  "createdAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "launchWindows": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "launchWindowId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "productId",
+                  "launchWindowId",
+                  "createdAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        },
+        "relations": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "productId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "relatedProductId": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                  },
+                  "relationType": {
+                    "type": "string"
+                  },
+                  "createdByUserId": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "createdAt": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "productId",
+                  "relatedProductId",
+                  "relationType",
+                  "createdByUserId",
+                  "createdAt"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "nextCursor": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "totalItems": {
+              "type": "integer",
+              "description": "Total number of matching records across all pages."
+            },
+            "url": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "items",
+            "nextCursor",
+            "totalItems",
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "id": {
+      "type": "string"
+    },
+    "code": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "category": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "categoryId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sku": {
+            "type": "string"
+          },
+          "color": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "size": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "sku",
+          "color",
+          "size"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "suppliers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "shortName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "shortName"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "createdAt": {
+      "type": "string"
+    },
+    "updatedAt": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "code",
+    "name",
+    "status",
+    "description",
+    "category",
+    "categoryId",
+    "variants",
+    "suppliers",
+    "createdAt",
+    "updatedAt"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    },
+    "__schema1": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema1"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema1"
+          }
+        }
+      ]
+    },
+    "__schema2": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema2"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema2"
+          }
+        }
+      ]
+    },
+    "__schema3": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema3"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema3"
+          }
+        }
+      ]
+    },
+    "__schema4": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema4"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema4"
+          }
+        }
+      ]
+    },
+    "__schema5": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema5"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema5"
+          }
+        }
+      ]
+    },
+    "__schema6": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema6"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema6"
+          }
+        }
+      ]
+    },
+    "__schema7": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema7"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema7"
+          }
+        }
+      ]
+    },
+    "__schema8": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema8"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema8"
+          }
+        }
+      ]
+    },
+    "__schema9": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema9"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema9"
+          }
+        }
+      ]
+    },
+    "__schema10": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema10"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema10"
+          }
+        }
+      ]
+    },
+    "__schema11": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema11"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema11"
+          }
+        }
+      ]
+    },
+    "__schema12": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema12"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema12"
+          }
+        }
+      ]
+    },
+    "__schema13": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema13"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema13"
+          }
+        }
+      ]
+    },
+    "__schema14": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema14"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema14"
+          }
+        }
+      ]
+    },
+    "__schema15": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema15"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema15"
+          }
+        }
+      ]
+    },
+    "__schema16": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema16"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema16"
+          }
+        }
+      ]
+    }
+  }
+}
