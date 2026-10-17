@@ -182,6 +182,66 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Couriers:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        name:
+          type: string
+        accountNumber:
+          type:
+          - string
+          - 'null'
+        trackingUrl:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - name
+      - accountNumber
+      - trackingUrl
+      - isActive
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
     CouriersList:
       type: object
       properties:
@@ -229,66 +289,6 @@ components:
       - items
       - nextCursor
       - totalItems
-      additionalProperties: false
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errorCode:
-          type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
-      required:
-      - error
-      - errorCode
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-    Couriers:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        name:
-          type: string
-        accountNumber:
-          type:
-          - string
-          - 'null'
-        trackingUrl:
-          type:
-          - string
-          - 'null'
-        isActive:
-          type: boolean
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - name
-      - accountNumber
-      - trackingUrl
-      - isActive
-      - createdAt
-      - updatedAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

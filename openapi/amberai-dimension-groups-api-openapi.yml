@@ -192,30 +192,6 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
-    DimensionGroups:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        name:
-          type: string
-        defaultCurveId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - name
-      - defaultCurveId
-      - createdAt
-      - updatedAt
-      additionalProperties: false
     DimensionGroupsList:
       type: object
       properties:
@@ -256,6 +232,30 @@ components:
       - items
       - nextCursor
       - totalItems
+      additionalProperties: false
+    DimensionGroups:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        name:
+          type: string
+        defaultCurveId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - name
+      - defaultCurveId
+      - createdAt
+      - updatedAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

@@ -214,51 +214,6 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
-    Boms:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        productVersionId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        name:
-          type: string
-        isDefault:
-          type: boolean
-        constructionAnnotations:
-          anyOf:
-          - $ref: '#/components/schemas/Boms/$defs/__schema0'
-          - type: 'null'
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - productVersionId
-      - name
-      - isDefault
-      - constructionAnnotations
-      - createdAt
-      - updatedAt
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Boms/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Boms/$defs/__schema0'
     BomsList:
       type: object
       properties:
@@ -321,6 +276,51 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/BomsList/$defs/__schema0'
+    Boms:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        productVersionId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        name:
+          type: string
+        isDefault:
+          type: boolean
+        constructionAnnotations:
+          anyOf:
+          - $ref: '#/components/schemas/Boms/$defs/__schema0'
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - productVersionId
+      - name
+      - isDefault
+      - constructionAnnotations
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Boms/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Boms/$defs/__schema0'
   securitySchemes:
     ApiKeyAuth:
       type: http

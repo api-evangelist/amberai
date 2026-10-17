@@ -179,57 +179,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PaymentTerms:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        partnerId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        name:
-          type: string
-        payments:
-          $ref: '#/components/schemas/PaymentTerms/$defs/__schema0'
-        isDefault:
-          type: boolean
-        createdById:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - partnerId
-      - name
-      - payments
-      - isDefault
-      - createdById
-      - createdAt
-      - updatedAt
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/PaymentTerms/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/PaymentTerms/$defs/__schema0'
     Error:
       type: object
       properties:
@@ -327,6 +276,57 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/PaymentTermsList/$defs/__schema0'
+    PaymentTerms:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        partnerId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        name:
+          type: string
+        payments:
+          $ref: '#/components/schemas/PaymentTerms/$defs/__schema0'
+        isDefault:
+          type: boolean
+        createdById:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - partnerId
+      - name
+      - payments
+      - isDefault
+      - createdById
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/PaymentTerms/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/PaymentTerms/$defs/__schema0'
   securitySchemes:
     ApiKeyAuth:
       type: http

@@ -178,30 +178,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Options:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        name:
-          type: string
-        key:
-          type: string
-        sequence:
-          type: number
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - name
-      - key
-      - sequence
-      - createdAt
-      - updatedAt
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -271,6 +247,30 @@ components:
       - items
       - nextCursor
       - totalItems
+      additionalProperties: false
+    Options:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        name:
+          type: string
+        key:
+          type: string
+        sequence:
+          type: number
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - name
+      - key
+      - sequence
+      - createdAt
+      - updatedAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

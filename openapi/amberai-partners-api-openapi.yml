@@ -226,212 +226,19 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Partners:
+    Error:
       type: object
       properties:
-        id:
+        error:
           type: string
-        slug:
+        errorCode:
           type: string
-        name:
-          type: string
-        shortName:
-          type:
-          - string
-          - 'null'
-        countryCode:
-          type:
-          - string
-          - 'null'
-        defaultCurrencyCode:
-          type:
-          - string
-          - 'null'
-        leadTimeDays:
-          type:
-          - number
-          - 'null'
-        moq:
-          type:
-          - number
-          - 'null'
-        moqByColor:
-          type:
-          - number
-          - 'null'
-        moqLastConfirmedAt:
-          type:
-          - string
-          - 'null'
-        midCode:
-          type:
-          - string
-          - 'null'
-        website:
-          type:
-          - string
-          - 'null'
-        businessRegistrationNumber:
-          type:
-          - string
-          - 'null'
-        taxId:
-          type:
-          - string
-          - 'null'
-        minimumOrderValue:
-          type:
-          - string
-          - 'null'
-        certifications:
-          anyOf:
-          - type: array
-            items:
-              type: string
-          - type: 'null'
-        specializations:
-          anyOf:
-          - type: array
-            items:
-              type: string
-          - type: 'null'
-        productionCapacity:
-          type:
-          - number
-          - 'null'
-        productionCapacityUnit:
-          type:
-          - string
-          - 'null'
-        factoryAuditDate:
-          type:
-          - string
-          - 'null'
-        factoryAuditStatus:
-          type:
-          - string
-          - 'null'
-        partnerStatus:
-          type: string
-        lastContactDate:
-          type:
-          - string
-          - 'null'
-        nextContactDate:
-          type:
-          - string
-          - 'null'
-        notes:
-          anyOf:
-          - $ref: '#/components/schemas/Partners/$defs/__schema0'
-          - type: 'null'
-        equipmentTechnology:
-          type:
-          - string
-          - 'null'
-        packagingCapabilities:
-          type:
-          - string
-          - 'null'
-        verified:
-          type: boolean
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        relationship:
-          type: object
-          properties:
-            id:
-              type: string
-            status:
-              type: string
-            brandNotes:
-              anyOf:
-              - $ref: '#/components/schemas/Partners/$defs/__schema1'
-              - type: 'null'
-            defaultIncotermCode:
-              type:
-              - string
-              - 'null'
-            defaultCurrencyCode:
-              type:
-              - string
-              - 'null'
-            defaultPaymentTermId:
-              type:
-              - string
-              - 'null'
-            qualityRating:
-              type:
-              - string
-              - 'null'
-            ontimeRating:
-              type:
-              - string
-              - 'null'
-            responsivenessRating:
-              type:
-              - string
-              - 'null'
-            sustainabilityScore:
-              type:
-              - string
-              - 'null'
-            brandOwnerUserId:
-              type:
-              - string
-              - 'null'
-            customFields:
-              anyOf:
-              - $ref: '#/components/schemas/Partners/$defs/__schema2'
-              - type: 'null'
-          required:
-          - id
-          - status
-          - brandNotes
-          - defaultIncotermCode
-          - defaultCurrencyCode
-          - defaultPaymentTermId
-          - qualityRating
-          - ontimeRating
-          - responsivenessRating
-          - sustainabilityScore
-          - brandOwnerUserId
-          - customFields
-          additionalProperties: false
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
       required:
-      - id
-      - slug
-      - name
-      - shortName
-      - countryCode
-      - defaultCurrencyCode
-      - leadTimeDays
-      - moq
-      - moqByColor
-      - moqLastConfirmedAt
-      - midCode
-      - website
-      - businessRegistrationNumber
-      - taxId
-      - minimumOrderValue
-      - certifications
-      - specializations
-      - productionCapacity
-      - productionCapacityUnit
-      - factoryAuditDate
-      - factoryAuditStatus
-      - partnerStatus
-      - lastContactDate
-      - nextContactDate
-      - notes
-      - equipmentTechnology
-      - packagingCapabilities
-      - verified
-      - createdAt
-      - updatedAt
-      - relationship
+      - error
+      - errorCode
       additionalProperties: false
       $defs:
         __schema0:
@@ -442,40 +249,12 @@ components:
           - type: 'null'
           - type: array
             items:
-              $ref: '#/components/schemas/Partners/$defs/__schema0'
+              $ref: '#/components/schemas/Error/$defs/__schema0'
           - type: object
             propertyNames:
               type: string
             additionalProperties:
-              $ref: '#/components/schemas/Partners/$defs/__schema0'
-        __schema1:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Partners/$defs/__schema1'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Partners/$defs/__schema1'
-        __schema2:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Partners/$defs/__schema2'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Partners/$defs/__schema2'
+              $ref: '#/components/schemas/Error/$defs/__schema0'
     PartnersList:
       type: object
       properties:
@@ -743,19 +522,212 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/PartnersList/$defs/__schema2'
-    Error:
+    Partners:
       type: object
       properties:
-        error:
+        id:
           type: string
-        errorCode:
+        slug:
           type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
+        name:
+          type: string
+        shortName:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        leadTimeDays:
+          type:
+          - number
+          - 'null'
+        moq:
+          type:
+          - number
+          - 'null'
+        moqByColor:
+          type:
+          - number
+          - 'null'
+        moqLastConfirmedAt:
+          type:
+          - string
+          - 'null'
+        midCode:
+          type:
+          - string
+          - 'null'
+        website:
+          type:
+          - string
+          - 'null'
+        businessRegistrationNumber:
+          type:
+          - string
+          - 'null'
+        taxId:
+          type:
+          - string
+          - 'null'
+        minimumOrderValue:
+          type:
+          - string
+          - 'null'
+        certifications:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+        specializations:
+          anyOf:
+          - type: array
+            items:
+              type: string
+          - type: 'null'
+        productionCapacity:
+          type:
+          - number
+          - 'null'
+        productionCapacityUnit:
+          type:
+          - string
+          - 'null'
+        factoryAuditDate:
+          type:
+          - string
+          - 'null'
+        factoryAuditStatus:
+          type:
+          - string
+          - 'null'
+        partnerStatus:
+          type: string
+        lastContactDate:
+          type:
+          - string
+          - 'null'
+        nextContactDate:
+          type:
+          - string
+          - 'null'
+        notes:
+          anyOf:
+          - $ref: '#/components/schemas/Partners/$defs/__schema0'
+          - type: 'null'
+        equipmentTechnology:
+          type:
+          - string
+          - 'null'
+        packagingCapabilities:
+          type:
+          - string
+          - 'null'
+        verified:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        relationship:
+          type: object
+          properties:
+            id:
+              type: string
+            status:
+              type: string
+            brandNotes:
+              anyOf:
+              - $ref: '#/components/schemas/Partners/$defs/__schema1'
+              - type: 'null'
+            defaultIncotermCode:
+              type:
+              - string
+              - 'null'
+            defaultCurrencyCode:
+              type:
+              - string
+              - 'null'
+            defaultPaymentTermId:
+              type:
+              - string
+              - 'null'
+            qualityRating:
+              type:
+              - string
+              - 'null'
+            ontimeRating:
+              type:
+              - string
+              - 'null'
+            responsivenessRating:
+              type:
+              - string
+              - 'null'
+            sustainabilityScore:
+              type:
+              - string
+              - 'null'
+            brandOwnerUserId:
+              type:
+              - string
+              - 'null'
+            customFields:
+              anyOf:
+              - $ref: '#/components/schemas/Partners/$defs/__schema2'
+              - type: 'null'
+          required:
+          - id
+          - status
+          - brandNotes
+          - defaultIncotermCode
+          - defaultCurrencyCode
+          - defaultPaymentTermId
+          - qualityRating
+          - ontimeRating
+          - responsivenessRating
+          - sustainabilityScore
+          - brandOwnerUserId
+          - customFields
+          additionalProperties: false
       required:
-      - error
-      - errorCode
+      - id
+      - slug
+      - name
+      - shortName
+      - countryCode
+      - defaultCurrencyCode
+      - leadTimeDays
+      - moq
+      - moqByColor
+      - moqLastConfirmedAt
+      - midCode
+      - website
+      - businessRegistrationNumber
+      - taxId
+      - minimumOrderValue
+      - certifications
+      - specializations
+      - productionCapacity
+      - productionCapacityUnit
+      - factoryAuditDate
+      - factoryAuditStatus
+      - partnerStatus
+      - lastContactDate
+      - nextContactDate
+      - notes
+      - equipmentTechnology
+      - packagingCapabilities
+      - verified
+      - createdAt
+      - updatedAt
+      - relationship
       additionalProperties: false
       $defs:
         __schema0:
@@ -766,12 +738,40 @@ components:
           - type: 'null'
           - type: array
             items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
+              $ref: '#/components/schemas/Partners/$defs/__schema0'
           - type: object
             propertyNames:
               type: string
             additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
+              $ref: '#/components/schemas/Partners/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Partners/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Partners/$defs/__schema1'
+        __schema2:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Partners/$defs/__schema2'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Partners/$defs/__schema2'
   securitySchemes:
     ApiKeyAuth:
       type: http

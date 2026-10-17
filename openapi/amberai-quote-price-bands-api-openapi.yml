@@ -200,56 +200,6 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
-    QuotePriceBands:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        quoteItemId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          description: Quote Item ID from /quote-items. Navigate with /quote-items/{id}/price-bands.
-        bandNumber:
-          type: number
-        quantity:
-          type: number
-        unitPrice:
-          type:
-          - string
-          - 'null'
-        targetUnitCost:
-          type:
-          - string
-          - 'null'
-        unitPriceBase:
-          type:
-          - string
-          - 'null'
-        targetUnitCostBase:
-          type:
-          - string
-          - 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-        updatedAt:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - quoteItemId
-      - bandNumber
-      - quantity
-      - unitPrice
-      - targetUnitCost
-      - unitPriceBase
-      - targetUnitCostBase
-      - createdAt
-      - updatedAt
-      additionalProperties: false
     QuotePriceBandsList:
       type: object
       properties:
@@ -316,6 +266,56 @@ components:
       - items
       - nextCursor
       - totalItems
+      additionalProperties: false
+    QuotePriceBands:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        quoteItemId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          description: Quote Item ID from /quote-items. Navigate with /quote-items/{id}/price-bands.
+        bandNumber:
+          type: number
+        quantity:
+          type: number
+        unitPrice:
+          type:
+          - string
+          - 'null'
+        targetUnitCost:
+          type:
+          - string
+          - 'null'
+        unitPriceBase:
+          type:
+          - string
+          - 'null'
+        targetUnitCostBase:
+          type:
+          - string
+          - 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - quoteItemId
+      - bandNumber
+      - quantity
+      - unitPrice
+      - targetUnitCost
+      - unitPriceBase
+      - targetUnitCostBase
+      - createdAt
+      - updatedAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

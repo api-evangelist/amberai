@@ -181,6 +181,79 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    PackingListLines:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        packingListId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        orderItemId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        skuId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        sku:
+          type:
+          - string
+          - 'null'
+        qtyPacked:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        deletedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - packingListId
+      - orderItemId
+      - skuId
+      - sku
+      - qtyPacked
+      - createdAt
+      - updatedAt
+      - deletedAt
+      additionalProperties: false
     PackingListLinesList:
       type: object
       properties:
@@ -242,79 +315,6 @@ components:
       - nextCursor
       - totalItems
       additionalProperties: false
-    PackingListLines:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        packingListId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        orderItemId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        skuId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        sku:
-          type:
-          - string
-          - 'null'
-        qtyPacked:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-        deletedAt:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - packingListId
-      - orderItemId
-      - skuId
-      - sku
-      - qtyPacked
-      - createdAt
-      - updatedAt
-      - deletedAt
-      additionalProperties: false
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errorCode:
-          type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
-      required:
-      - error
-      - errorCode
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
   securitySchemes:
     ApiKeyAuth:
       type: http

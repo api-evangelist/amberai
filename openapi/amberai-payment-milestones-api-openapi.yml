@@ -196,35 +196,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errorCode:
-          type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
-      required:
-      - error
-      - errorCode
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
     PaymentMilestonesList:
       type: object
       properties:
@@ -291,6 +262,35 @@ components:
       - nextCursor
       - totalItems
       additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
     PaymentMilestones:
       type: object
       properties:

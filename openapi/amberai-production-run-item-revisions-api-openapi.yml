@@ -160,63 +160,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ProductionRunItemRevisions:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        productionRunItemId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        quantityDelta:
-          type: number
-        source:
-          type: string
-        updatedByUserId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        createdAt:
-          type: string
-      required:
-      - id
-      - productionRunItemId
-      - quantityDelta
-      - source
-      - updatedByUserId
-      - createdAt
-      additionalProperties: false
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errorCode:
-          type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
-      required:
-      - error
-      - errorCode
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
     ProductionRunItemRevisionsList:
       type: object
       properties:
@@ -261,6 +204,63 @@ components:
       - items
       - nextCursor
       - totalItems
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    ProductionRunItemRevisions:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        productionRunItemId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        quantityDelta:
+          type: number
+        source:
+          type: string
+        updatedByUserId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        createdAt:
+          type: string
+      required:
+      - id
+      - productionRunItemId
+      - quantityDelta
+      - source
+      - updatedByUserId
+      - createdAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

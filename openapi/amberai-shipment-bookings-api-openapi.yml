@@ -166,35 +166,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ShipmentBookings:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        shipmentId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        bookingId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        linkSource:
-          type: string
-        confidence:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - shipmentId
-      - bookingId
-      - linkSource
-      - confidence
-      - createdAt
-      - updatedAt
-      additionalProperties: false
     ShipmentBookingsList:
       type: object
       properties:
@@ -270,6 +241,35 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
+    ShipmentBookings:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        shipmentId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        bookingId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        linkSource:
+          type: string
+        confidence:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - shipmentId
+      - bookingId
+      - linkSource
+      - confidence
+      - createdAt
+      - updatedAt
+      additionalProperties: false
   securitySchemes:
     ApiKeyAuth:
       type: http

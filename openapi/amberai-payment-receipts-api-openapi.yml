@@ -184,6 +184,100 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PaymentReceipts:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        documentId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        paidAmount:
+          type:
+          - string
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        debitDate:
+          type:
+          - string
+          - 'null'
+        valueDate:
+          type:
+          - string
+          - 'null'
+        paymentReference:
+          type:
+          - string
+          - 'null'
+        beneficiaryName:
+          type:
+          - string
+          - 'null'
+        beneficiaryAccountTail:
+          type:
+          - string
+          - 'null'
+        fxRate:
+          type:
+          - string
+          - 'null'
+        resolvedPayeeId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - documentId
+      - paidAmount
+      - currency
+      - debitDate
+      - valueDate
+      - paymentReference
+      - beneficiaryName
+      - beneficiaryAccountTail
+      - fxRate
+      - resolvedPayeeId
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
     PaymentReceiptsList:
       type: object
       properties:
@@ -265,100 +359,6 @@ components:
       - items
       - nextCursor
       - totalItems
-      additionalProperties: false
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errorCode:
-          type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
-      required:
-      - error
-      - errorCode
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-    PaymentReceipts:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        documentId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        paidAmount:
-          type:
-          - string
-          - 'null'
-        currency:
-          type:
-          - string
-          - 'null'
-        debitDate:
-          type:
-          - string
-          - 'null'
-        valueDate:
-          type:
-          - string
-          - 'null'
-        paymentReference:
-          type:
-          - string
-          - 'null'
-        beneficiaryName:
-          type:
-          - string
-          - 'null'
-        beneficiaryAccountTail:
-          type:
-          - string
-          - 'null'
-        fxRate:
-          type:
-          - string
-          - 'null'
-        resolvedPayeeId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - documentId
-      - paidAmount
-      - currency
-      - debitDate
-      - valueDate
-      - paymentReference
-      - beneficiaryName
-      - beneficiaryAccountTail
-      - fxRate
-      - resolvedPayeeId
-      - createdAt
-      - updatedAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

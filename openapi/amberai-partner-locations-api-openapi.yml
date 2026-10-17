@@ -185,6 +185,129 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PartnerLocationsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              partnerId:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              locationId:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              isPrimary:
+                type: boolean
+              type:
+                type:
+                - string
+                - 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+              location:
+                anyOf:
+                - type: object
+                  properties:
+                    id:
+                      type: string
+                      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    type:
+                      type:
+                      - string
+                      - 'null'
+                    name:
+                      type:
+                      - string
+                      - 'null'
+                    line1:
+                      type:
+                      - string
+                      - 'null'
+                    line2:
+                      type:
+                      - string
+                      - 'null'
+                    city:
+                      type:
+                      - string
+                      - 'null'
+                    state:
+                      type:
+                      - string
+                      - 'null'
+                    postalCode:
+                      type:
+                      - string
+                      - 'null'
+                    countryCode:
+                      type:
+                      - string
+                      - 'null'
+                    unLocode:
+                      type:
+                      - string
+                      - 'null'
+                    legacyAddressId:
+                      anyOf:
+                      - type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      - type: 'null'
+                    legacyPortId:
+                      anyOf:
+                      - type: string
+                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                      - type: 'null'
+                    createdAt:
+                      type: string
+                    updatedAt:
+                      type: string
+                  required:
+                  - id
+                  - type
+                  - name
+                  - line1
+                  - line2
+                  - city
+                  - state
+                  - postalCode
+                  - countryCode
+                  - unLocode
+                  - legacyAddressId
+                  - legacyPortId
+                  - createdAt
+                  - updatedAt
+                  additionalProperties: false
+                - type: 'null'
+            required:
+            - id
+            - partnerId
+            - locationId
+            - isPrimary
+            - type
+            - createdAt
+            - updatedAt
+            - location
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
     Error:
       type: object
       properties:
@@ -319,129 +442,6 @@ components:
       - createdAt
       - updatedAt
       - location
-      additionalProperties: false
-    PartnerLocationsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              partnerId:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              locationId:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              isPrimary:
-                type: boolean
-              type:
-                type:
-                - string
-                - 'null'
-              createdAt:
-                type: string
-              updatedAt:
-                type: string
-              location:
-                anyOf:
-                - type: object
-                  properties:
-                    id:
-                      type: string
-                      pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                    type:
-                      type:
-                      - string
-                      - 'null'
-                    name:
-                      type:
-                      - string
-                      - 'null'
-                    line1:
-                      type:
-                      - string
-                      - 'null'
-                    line2:
-                      type:
-                      - string
-                      - 'null'
-                    city:
-                      type:
-                      - string
-                      - 'null'
-                    state:
-                      type:
-                      - string
-                      - 'null'
-                    postalCode:
-                      type:
-                      - string
-                      - 'null'
-                    countryCode:
-                      type:
-                      - string
-                      - 'null'
-                    unLocode:
-                      type:
-                      - string
-                      - 'null'
-                    legacyAddressId:
-                      anyOf:
-                      - type: string
-                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                      - type: 'null'
-                    legacyPortId:
-                      anyOf:
-                      - type: string
-                        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                      - type: 'null'
-                    createdAt:
-                      type: string
-                    updatedAt:
-                      type: string
-                  required:
-                  - id
-                  - type
-                  - name
-                  - line1
-                  - line2
-                  - city
-                  - state
-                  - postalCode
-                  - countryCode
-                  - unLocode
-                  - legacyAddressId
-                  - legacyPortId
-                  - createdAt
-                  - updatedAt
-                  additionalProperties: false
-                - type: 'null'
-            required:
-            - id
-            - partnerId
-            - locationId
-            - isPrimary
-            - type
-            - createdAt
-            - updatedAt
-            - location
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

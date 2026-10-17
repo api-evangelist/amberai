@@ -184,68 +184,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    LaunchWindowsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              collectionId:
-                anyOf:
-                - type: string
-                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                - type: 'null'
-              name:
-                type: string
-              code:
-                type: string
-              uiColor:
-                type: string
-              launchStartDate:
-                type:
-                - string
-                - 'null'
-              launchEndDate:
-                type:
-                - string
-                - 'null'
-              deletedAt:
-                type:
-                - string
-                - 'null'
-              createdAt:
-                type: string
-              updatedAt:
-                type: string
-            required:
-            - id
-            - collectionId
-            - name
-            - code
-            - uiColor
-            - launchStartDate
-            - launchEndDate
-            - deletedAt
-            - createdAt
-            - updatedAt
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -319,6 +257,68 @@ components:
       - deletedAt
       - createdAt
       - updatedAt
+      additionalProperties: false
+    LaunchWindowsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              collectionId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              name:
+                type: string
+              code:
+                type: string
+              uiColor:
+                type: string
+              launchStartDate:
+                type:
+                - string
+                - 'null'
+              launchEndDate:
+                type:
+                - string
+                - 'null'
+              deletedAt:
+                type:
+                - string
+                - 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - collectionId
+            - name
+            - code
+            - uiColor
+            - launchStartDate
+            - launchEndDate
+            - deletedAt
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

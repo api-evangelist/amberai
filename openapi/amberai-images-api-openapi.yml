@@ -289,66 +289,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        errorCode:
-          type: string
-        details:
-          description: Parameter validation issues, when available.
-          $ref: '#/components/schemas/Error/$defs/__schema0'
-      required:
-      - error
-      - errorCode
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Error/$defs/__schema0'
-    DocumentContent:
-      type: object
-      properties:
-        url:
-          type: string
-        expiresAt:
-          type: string
-        extent:
-          anyOf:
-          - $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
-          - type: 'null'
-      required:
-      - url
-      - expiresAt
-      - extent
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
     Images:
       type: object
       properties:
@@ -411,6 +351,66 @@ components:
       - createdAt
       - updatedAt
       additionalProperties: false
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        errorCode:
+          type: string
+        details:
+          description: Parameter validation issues, when available.
+          $ref: '#/components/schemas/Error/$defs/__schema0'
+      required:
+      - error
+      - errorCode
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Error/$defs/__schema0'
+    DocumentContent:
+      type: object
+      properties:
+        url:
+          type: string
+        expiresAt:
+          type: string
+        extent:
+          anyOf:
+          - $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
+          - type: 'null'
+      required:
+      - url
+      - expiresAt
+      - extent
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/DocumentContent/$defs/__schema0'
     ImagesList:
       type: object
       properties:

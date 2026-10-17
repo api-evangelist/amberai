@@ -384,6 +384,118 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    QuoteRevisionsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              rfqId:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                description: Parent Quote ID from /quotes. Navigate with /quotes/{id}/revisions.
+              round:
+                type: number
+              status:
+                type: string
+              isBrandQuote:
+                type: boolean
+              submittedAt:
+                type:
+                - string
+                - 'null'
+              currency:
+                type:
+                - string
+                - 'null'
+              incoterm:
+                type:
+                - string
+                - 'null'
+              comment:
+                type:
+                - string
+                - 'null'
+              leadTimeDays:
+                type:
+                - number
+                - 'null'
+              quoteDueDate:
+                type:
+                - string
+                - 'null'
+              targetShipDate:
+                type:
+                - string
+                - 'null'
+              createdById:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              lastActivityAt:
+                type:
+                - string
+                - 'null'
+              exchangeRate:
+                type:
+                - string
+                - 'null'
+              totalAmountBase:
+                type:
+                - string
+                - 'null'
+              paymentTermId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              createdAt:
+                type:
+                - string
+                - 'null'
+              updatedAt:
+                type:
+                - string
+                - 'null'
+            required:
+            - id
+            - rfqId
+            - round
+            - status
+            - isBrandQuote
+            - submittedAt
+            - currency
+            - incoterm
+            - comment
+            - leadTimeDays
+            - quoteDueDate
+            - targetShipDate
+            - createdById
+            - lastActivityAt
+            - exchangeRate
+            - totalAmountBase
+            - paymentTermId
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
     QuoteNotesList:
       type: object
       properties:
@@ -702,118 +814,6 @@ components:
             - targetPrice
             - currency
             - createdAt
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
-    QuoteRevisionsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              rfqId:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                description: Parent Quote ID from /quotes. Navigate with /quotes/{id}/revisions.
-              round:
-                type: number
-              status:
-                type: string
-              isBrandQuote:
-                type: boolean
-              submittedAt:
-                type:
-                - string
-                - 'null'
-              currency:
-                type:
-                - string
-                - 'null'
-              incoterm:
-                type:
-                - string
-                - 'null'
-              comment:
-                type:
-                - string
-                - 'null'
-              leadTimeDays:
-                type:
-                - number
-                - 'null'
-              quoteDueDate:
-                type:
-                - string
-                - 'null'
-              targetShipDate:
-                type:
-                - string
-                - 'null'
-              createdById:
-                anyOf:
-                - type: string
-                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                - type: 'null'
-              lastActivityAt:
-                type:
-                - string
-                - 'null'
-              exchangeRate:
-                type:
-                - string
-                - 'null'
-              totalAmountBase:
-                type:
-                - string
-                - 'null'
-              paymentTermId:
-                anyOf:
-                - type: string
-                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                - type: 'null'
-              createdAt:
-                type:
-                - string
-                - 'null'
-              updatedAt:
-                type:
-                - string
-                - 'null'
-            required:
-            - id
-            - rfqId
-            - round
-            - status
-            - isBrandQuote
-            - submittedAt
-            - currency
-            - incoterm
-            - comment
-            - leadTimeDays
-            - quoteDueDate
-            - targetShipDate
-            - createdById
-            - lastActivityAt
-            - exchangeRate
-            - totalAmountBase
-            - paymentTermId
-            - createdAt
-            - updatedAt
             additionalProperties: false
         nextCursor:
           type:

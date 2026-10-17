@@ -166,52 +166,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ProductionRunItemsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              productionRunId:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              orderItemId:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              quantity:
-                type: number
-              source:
-                type: string
-              createdAt:
-                type: string
-              updatedAt:
-                type: string
-            required:
-            - id
-            - productionRunId
-            - orderItemId
-            - quantity
-            - source
-            - createdAt
-            - updatedAt
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -269,6 +223,52 @@ components:
       - source
       - createdAt
       - updatedAt
+      additionalProperties: false
+    ProductionRunItemsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              productionRunId:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              orderItemId:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              quantity:
+                type: number
+              source:
+                type: string
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - productionRunId
+            - orderItemId
+            - quantity
+            - source
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

@@ -215,6 +215,37 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
+    PaymentAgreements:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        orderId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        paymentTermId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        currency:
+          type: string
+        status:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - orderId
+      - paymentTermId
+      - currency
+      - status
+      - createdAt
+      - updatedAt
+      additionalProperties: false
     PaymentAgreementsList:
       type: object
       properties:
@@ -262,37 +293,6 @@ components:
       - items
       - nextCursor
       - totalItems
-      additionalProperties: false
-    PaymentAgreements:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        orderId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        paymentTermId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        currency:
-          type: string
-        status:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - orderId
-      - paymentTermId
-      - currency
-      - status
-      - createdAt
-      - updatedAt
       additionalProperties: false
   securitySchemes:
     ApiKeyAuth:

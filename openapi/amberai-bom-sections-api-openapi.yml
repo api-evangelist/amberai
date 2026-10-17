@@ -178,72 +178,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    BomSectionsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              code:
-                type: string
-              name:
-                type: string
-              sequence:
-                type: number
-              relevantFieldKeys:
-                anyOf:
-                - $ref: '#/components/schemas/BomSectionsList/$defs/__schema0'
-                - type: 'null'
-              deletedAt:
-                type:
-                - string
-                - 'null'
-              createdAt:
-                type: string
-              updatedAt:
-                type: string
-            required:
-            - id
-            - code
-            - name
-            - sequence
-            - relevantFieldKeys
-            - deletedAt
-            - createdAt
-            - updatedAt
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/BomSectionsList/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/BomSectionsList/$defs/__schema0'
     BomSections:
       type: object
       properties:
@@ -322,6 +256,72 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
+    BomSectionsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              code:
+                type: string
+              name:
+                type: string
+              sequence:
+                type: number
+              relevantFieldKeys:
+                anyOf:
+                - $ref: '#/components/schemas/BomSectionsList/$defs/__schema0'
+                - type: 'null'
+              deletedAt:
+                type:
+                - string
+                - 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - code
+            - name
+            - sequence
+            - relevantFieldKeys
+            - deletedAt
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/BomSectionsList/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/BomSectionsList/$defs/__schema0'
   securitySchemes:
     ApiKeyAuth:
       type: http

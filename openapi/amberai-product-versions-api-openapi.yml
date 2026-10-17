@@ -217,196 +217,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ProductVersions:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        productId:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        versionNumber:
-          type: number
-        versionName:
-          type:
-          - string
-          - 'null'
-        status:
-          type: string
-        isActive:
-          type: boolean
-        weightValue:
-          type:
-          - string
-          - 'null'
-        weightUomId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        targetFob:
-          type:
-          - string
-          - 'null'
-        targetFobCurrency:
-          type:
-          - string
-          - 'null'
-        priceCurrency:
-          type:
-          - string
-          - 'null'
-        moq:
-          type:
-          - number
-          - 'null'
-        moqByColor:
-          type:
-          - number
-          - 'null'
-        moqLastConfirmedAt:
-          type:
-          - string
-          - 'null'
-        technicalSpecs:
-          anyOf:
-          - $ref: '#/components/schemas/ProductVersions/$defs/__schema0'
-          - type: 'null'
-        packagingSpecs:
-          anyOf:
-          - $ref: '#/components/schemas/ProductVersions/$defs/__schema1'
-          - type: 'null'
-        labelingSpecs:
-          anyOf:
-          - $ref: '#/components/schemas/ProductVersions/$defs/__schema2'
-          - type: 'null'
-        sizeSpecs:
-          anyOf:
-          - $ref: '#/components/schemas/ProductVersions/$defs/__schema3'
-          - type: 'null'
-        baseVersionId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        protoId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        partnerId:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        notes:
-          type:
-          - string
-          - 'null'
-        changesSummary:
-          type:
-          - string
-          - 'null'
-        approvedAt:
-          type:
-          - string
-          - 'null'
-        approvedBy:
-          anyOf:
-          - type: string
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          - type: 'null'
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - productId
-      - versionNumber
-      - versionName
-      - status
-      - isActive
-      - weightValue
-      - weightUomId
-      - targetFob
-      - targetFobCurrency
-      - priceCurrency
-      - moq
-      - moqByColor
-      - moqLastConfirmedAt
-      - technicalSpecs
-      - packagingSpecs
-      - labelingSpecs
-      - sizeSpecs
-      - baseVersionId
-      - protoId
-      - partnerId
-      - notes
-      - changesSummary
-      - approvedAt
-      - approvedBy
-      - createdAt
-      - updatedAt
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema0'
-        __schema1:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema1'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema1'
-        __schema2:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema2'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema2'
-        __schema3:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema3'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/ProductVersions/$defs/__schema3'
     ProductVersionsList:
       type: object
       properties:
@@ -614,6 +424,196 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/ProductVersionsList/$defs/__schema3'
+    ProductVersions:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        productId:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        versionNumber:
+          type: number
+        versionName:
+          type:
+          - string
+          - 'null'
+        status:
+          type: string
+        isActive:
+          type: boolean
+        weightValue:
+          type:
+          - string
+          - 'null'
+        weightUomId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        targetFob:
+          type:
+          - string
+          - 'null'
+        targetFobCurrency:
+          type:
+          - string
+          - 'null'
+        priceCurrency:
+          type:
+          - string
+          - 'null'
+        moq:
+          type:
+          - number
+          - 'null'
+        moqByColor:
+          type:
+          - number
+          - 'null'
+        moqLastConfirmedAt:
+          type:
+          - string
+          - 'null'
+        technicalSpecs:
+          anyOf:
+          - $ref: '#/components/schemas/ProductVersions/$defs/__schema0'
+          - type: 'null'
+        packagingSpecs:
+          anyOf:
+          - $ref: '#/components/schemas/ProductVersions/$defs/__schema1'
+          - type: 'null'
+        labelingSpecs:
+          anyOf:
+          - $ref: '#/components/schemas/ProductVersions/$defs/__schema2'
+          - type: 'null'
+        sizeSpecs:
+          anyOf:
+          - $ref: '#/components/schemas/ProductVersions/$defs/__schema3'
+          - type: 'null'
+        baseVersionId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        protoId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        partnerId:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        changesSummary:
+          type:
+          - string
+          - 'null'
+        approvedAt:
+          type:
+          - string
+          - 'null'
+        approvedBy:
+          anyOf:
+          - type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          - type: 'null'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - productId
+      - versionNumber
+      - versionName
+      - status
+      - isActive
+      - weightValue
+      - weightUomId
+      - targetFob
+      - targetFobCurrency
+      - priceCurrency
+      - moq
+      - moqByColor
+      - moqLastConfirmedAt
+      - technicalSpecs
+      - packagingSpecs
+      - labelingSpecs
+      - sizeSpecs
+      - baseVersionId
+      - protoId
+      - partnerId
+      - notes
+      - changesSummary
+      - approvedAt
+      - approvedBy
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema1'
+        __schema2:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema2'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema2'
+        __schema3:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema3'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/ProductVersions/$defs/__schema3'
     Error:
       type: object
       properties:

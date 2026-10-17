@@ -172,34 +172,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    CountriesList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: string
-              name:
-                type: string
-            required:
-            - code
-            - name
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -229,6 +201,34 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
+    CountriesList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: string
+              name:
+                type: string
+            required:
+            - code
+            - name
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
     Countries:
       type: object
       properties:

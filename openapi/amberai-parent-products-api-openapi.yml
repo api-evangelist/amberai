@@ -220,63 +220,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ProductList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              code:
-                type: string
-              name:
-                type: string
-              status:
-                type:
-                - string
-                - 'null'
-              category:
-                type:
-                - string
-                - 'null'
-              categoryId:
-                anyOf:
-                - type: string
-                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                - type: 'null'
-              currentProductVersionId:
-                anyOf:
-                - type: string
-                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                - type: 'null'
-              createdAt:
-                type: string
-              updatedAt:
-                type: string
-            required:
-            - id
-            - code
-            - name
-            - status
-            - category
-            - createdAt
-            - updatedAt
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
     ProductDetail:
       type: object
       properties:
@@ -2620,6 +2563,63 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
+    ProductList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              code:
+                type: string
+              name:
+                type: string
+              status:
+                type:
+                - string
+                - 'null'
+              category:
+                type:
+                - string
+                - 'null'
+              categoryId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              currentProductVersionId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - code
+            - name
+            - status
+            - category
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
   securitySchemes:
     ApiKeyAuth:
       type: http

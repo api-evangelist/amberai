@@ -216,62 +216,6 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
-    Colors:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        status:
-          type: string
-        code:
-          type: string
-        name:
-          type: string
-        hexCode:
-          type:
-          - string
-          - 'null'
-        swatchVersion:
-          type: number
-        customFields:
-          anyOf:
-          - $ref: '#/components/schemas/Colors/$defs/__schema0'
-          - type: 'null'
-        createdAt:
-          type:
-          - string
-          - 'null'
-        updatedAt:
-          type:
-          - string
-          - 'null'
-      required:
-      - id
-      - status
-      - code
-      - name
-      - hexCode
-      - swatchVersion
-      - customFields
-      - createdAt
-      - updatedAt
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/Colors/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/Colors/$defs/__schema0'
     ColorsList:
       type: object
       properties:
@@ -345,6 +289,62 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/ColorsList/$defs/__schema0'
+    Colors:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        status:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        hexCode:
+          type:
+          - string
+          - 'null'
+        swatchVersion:
+          type: number
+        customFields:
+          anyOf:
+          - $ref: '#/components/schemas/Colors/$defs/__schema0'
+          - type: 'null'
+        createdAt:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - status
+      - code
+      - name
+      - hexCode
+      - swatchVersion
+      - customFields
+      - createdAt
+      - updatedAt
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/Colors/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/Colors/$defs/__schema0'
   securitySchemes:
     ApiKeyAuth:
       type: http

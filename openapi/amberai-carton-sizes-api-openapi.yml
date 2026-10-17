@@ -163,33 +163,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    CartonSizes:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-        name:
-          type: string
-        lengthCm:
-          type: string
-        widthCm:
-          type: string
-        heightCm:
-          type: string
-        createdAt:
-          type: string
-        updatedAt:
-          type: string
-      required:
-      - id
-      - name
-      - lengthCm
-      - widthCm
-      - heightCm
-      - createdAt
-      - updatedAt
-      additionalProperties: false
     Error:
       type: object
       properties:
@@ -219,6 +192,33 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
+    CartonSizes:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+        name:
+          type: string
+        lengthCm:
+          type: string
+        widthCm:
+          type: string
+        heightCm:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+      - id
+      - name
+      - lengthCm
+      - widthCm
+      - heightCm
+      - createdAt
+      - updatedAt
+      additionalProperties: false
     CartonSizesList:
       type: object
       properties:

@@ -211,6 +211,137 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    MaterialsList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              bomSectionId:
+                anyOf:
+                - type: string
+                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                - type: 'null'
+              name:
+                type: string
+              code:
+                type:
+                - string
+                - 'null'
+              composition:
+                type:
+                - string
+                - 'null'
+              description:
+                type:
+                - string
+                - 'null'
+              gsm:
+                type:
+                - number
+                - 'null'
+              supplier:
+                type:
+                - string
+                - 'null'
+              supplierProductCode:
+                type:
+                - string
+                - 'null'
+              status:
+                type: string
+              negotiatedPrice:
+                type:
+                - string
+                - 'null'
+              negotiatedPriceCurrency:
+                type:
+                - string
+                - 'null'
+              properties:
+                anyOf:
+                - $ref: '#/components/schemas/MaterialsList/$defs/__schema0'
+                - type: 'null'
+              customFields:
+                anyOf:
+                - $ref: '#/components/schemas/MaterialsList/$defs/__schema1'
+                - type: 'null'
+              imageVersion:
+                type: number
+              deletedAt:
+                type:
+                - string
+                - 'null'
+              createdAt:
+                type: string
+              updatedAt:
+                type: string
+            required:
+            - id
+            - bomSectionId
+            - name
+            - code
+            - composition
+            - description
+            - gsm
+            - supplier
+            - supplierProductCode
+            - status
+            - negotiatedPrice
+            - negotiatedPriceCurrency
+            - properties
+            - customFields
+            - imageVersion
+            - deletedAt
+            - createdAt
+            - updatedAt
+            additionalProperties: false
+        nextCursor:
+          type:
+          - string
+          - 'null'
+        totalItems:
+          type: integer
+          description: Total number of matching records across all pages.
+      required:
+      - items
+      - nextCursor
+      - totalItems
+      additionalProperties: false
+      $defs:
+        __schema0:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/MaterialsList/$defs/__schema0'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/MaterialsList/$defs/__schema0'
+        __schema1:
+          anyOf:
+          - type: string
+          - type: number
+          - type: boolean
+          - type: 'null'
+          - type: array
+            items:
+              $ref: '#/components/schemas/MaterialsList/$defs/__schema1'
+          - type: object
+            propertyNames:
+              type: string
+            additionalProperties:
+              $ref: '#/components/schemas/MaterialsList/$defs/__schema1'
     Materials:
       type: object
       properties:
@@ -354,137 +485,6 @@ components:
               type: string
             additionalProperties:
               $ref: '#/components/schemas/Error/$defs/__schema0'
-    MaterialsList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              bomSectionId:
-                anyOf:
-                - type: string
-                  pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                - type: 'null'
-              name:
-                type: string
-              code:
-                type:
-                - string
-                - 'null'
-              composition:
-                type:
-                - string
-                - 'null'
-              description:
-                type:
-                - string
-                - 'null'
-              gsm:
-                type:
-                - number
-                - 'null'
-              supplier:
-                type:
-                - string
-                - 'null'
-              supplierProductCode:
-                type:
-                - string
-                - 'null'
-              status:
-                type: string
-              negotiatedPrice:
-                type:
-                - string
-                - 'null'
-              negotiatedPriceCurrency:
-                type:
-                - string
-                - 'null'
-              properties:
-                anyOf:
-                - $ref: '#/components/schemas/MaterialsList/$defs/__schema0'
-                - type: 'null'
-              customFields:
-                anyOf:
-                - $ref: '#/components/schemas/MaterialsList/$defs/__schema1'
-                - type: 'null'
-              imageVersion:
-                type: number
-              deletedAt:
-                type:
-                - string
-                - 'null'
-              createdAt:
-                type: string
-              updatedAt:
-                type: string
-            required:
-            - id
-            - bomSectionId
-            - name
-            - code
-            - composition
-            - description
-            - gsm
-            - supplier
-            - supplierProductCode
-            - status
-            - negotiatedPrice
-            - negotiatedPriceCurrency
-            - properties
-            - customFields
-            - imageVersion
-            - deletedAt
-            - createdAt
-            - updatedAt
-            additionalProperties: false
-        nextCursor:
-          type:
-          - string
-          - 'null'
-        totalItems:
-          type: integer
-          description: Total number of matching records across all pages.
-      required:
-      - items
-      - nextCursor
-      - totalItems
-      additionalProperties: false
-      $defs:
-        __schema0:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/MaterialsList/$defs/__schema0'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/MaterialsList/$defs/__schema0'
-        __schema1:
-          anyOf:
-          - type: string
-          - type: number
-          - type: boolean
-          - type: 'null'
-          - type: array
-            items:
-              $ref: '#/components/schemas/MaterialsList/$defs/__schema1'
-          - type: object
-            propertyNames:
-              type: string
-            additionalProperties:
-              $ref: '#/components/schemas/MaterialsList/$defs/__schema1'
   securitySchemes:
     ApiKeyAuth:
       type: http
