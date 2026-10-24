@@ -13,6 +13,12 @@ created: '2026-09-24'
 modified: '2026-09-24'
 tags:
 - Company
+- Artificial Intelligence
+- Operating System
+- Automation
+- Supply Chain
+tags_raw:
+- Company
 - AI
 - OperatingSystem
 - Automation
@@ -23,6 +29,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/amberai-capability-edges.yml
+  name: Amberai Business Capability Map
 - type: AgenticAccess
   url: agentic-access/amberai-agentic-access.yml
 - type: Spectral
@@ -190,6 +199,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Booking
+  tags_raw:
   - Bookings
   properties:
   - type: OpenAPI
@@ -212,6 +223,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Brands
+  tags_raw:
   - Brand
   properties:
   - type: OpenAPI
@@ -322,6 +335,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -721,6 +736,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -875,6 +892,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -1117,6 +1136,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -2112,6 +2133,8 @@ apis:
   humanURL: https://app.amber.ai/api/public/v1
   baseURL: https://app.amber.ai/api/public/v1
   tags:
+  - Units of Measure
+  tags_raw:
   - Units Of Measure
   properties:
   - type: OpenAPI
